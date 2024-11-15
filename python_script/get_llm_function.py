@@ -18,6 +18,7 @@ hf_token = os.environ.get("HF_API_TOKEN")
 if hf_token is None:
     raise NameError("HF_API_TOKEN isn't defined")
 
+
 def get_llm_function(model_name=LLM_MODEL):
     """get LLM model between :
     - mistralai/Mixtral-8x7B-Instruct-v0.1
