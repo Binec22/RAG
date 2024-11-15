@@ -19,7 +19,7 @@ def get_rag_chain(params=None):
         # "llm_model": LLM_MODEL,
         "chroma_root_path": "data/test/embedded_database",
         "embedding_model": "voyage-3",
-        "llm_model": "mistralai/Mistral-7B-Instruct-v0.1",
+        "llm_model": "gpt-3.5-turbo",
         "search_type": "similarity",
         "similarity_doc_nb": 5,
         "score_threshold": 0.8,

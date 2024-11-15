@@ -5,7 +5,15 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="7c8b8920-ebb2-41a9-8f3b-1d300a7abb04" name="Changes" comment="First Version">
-      <change afterPath="$PROJECT_DIR$/.gitignore" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.env" beforeDir="false" afterPath="$PROJECT_DIR$/.env" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/local_app.py" beforeDir="false" afterPath="$PROJECT_DIR$/local_app.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/python_script/.env" beforeDir="false" afterPath="$PROJECT_DIR$/python_script/.env" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/python_script/ConversationalRagChain.py" beforeDir="false" afterPath="$PROJECT_DIR$/python_script/ConversationalRagChain.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/python_script/config.json" beforeDir="false" afterPath="$PROJECT_DIR$/python_script/config.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/python_script/get_rag_chain.py" beforeDir="false" afterPath="$PROJECT_DIR$/python_script/get_rag_chain.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/python_script/populate_database.py" beforeDir="false" afterPath="$PROJECT_DIR$/python_script/populate_database.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/static/script.js" beforeDir="false" afterPath="$PROJECT_DIR$/static/script.js" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -23,6 +31,9 @@
     </option>
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
   </component>
+  <component name="MarkdownSettingsMigration">
+    <option name="stateVersion" value="1" />
+  </component>
   <component name="ProjectColorInfo">{
   &quot;associatedIndex&quot;: 6
 }</component>
@@ -39,7 +50,7 @@
     "RunOnceActivity.ShowReadmeOnStart": "true",
     "git-widget-placeholder": "master",
     "last_opened_file_path": "C:/Users/Binec/PycharmProjects/RAG",
-    "settings.editor.selected.configurable": "project.propVCSSupport.DirectoryMappings"
+    "settings.editor.selected.configurable": "com.jetbrains.python.configuration.PyActiveSdkModuleConfigurable"
   }
 }]]></component>
   <component name="RecentsManager">
@@ -103,7 +114,15 @@
       <option name="project" value="LOCAL" />
       <updated>1731602661691</updated>
     </task>
-    <option name="localTasksCounter" value="6" />
+    <task id="LOCAL-00006" summary="First Version">
+      <option name="closed" value="true" />
+      <created>1731605218772</created>
+      <option name="number" value="00006" />
+      <option name="presentableId" value="LOCAL-00006" />
+      <option name="project" value="LOCAL" />
+      <updated>1731605218772</updated>
+    </task>
+    <option name="localTasksCounter" value="7" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -152,8 +171,8 @@
       <path value="$PROJECT_DIR$" />
     </ignored-roots>
     <MESSAGE value="Firsr Version" />
-    <MESSAGE value="First Version" />
     <MESSAGE value="Second push" />
-    <option name="LAST_COMMIT_MESSAGE" value="Second push" />
+    <MESSAGE value="First Version" />
+    <option name="LAST_COMMIT_MESSAGE" value="First Version" />
   </component>
 </project>

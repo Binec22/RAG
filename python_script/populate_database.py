@@ -121,7 +121,7 @@ def add_to_chroma(chunks: list[Document]):
     Check if there are new documents in the documents database
     Add them to the chroma database
     """
-    from langchain_community.vectorstores import Chroma
+    from langchain_chroma import Chroma
     from get_embedding_function import get_embedding_function
     # Load the existing database.
     db = Chroma(

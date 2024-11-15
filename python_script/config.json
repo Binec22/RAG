@@ -31,7 +31,7 @@
       "data_path": "data/test/documents",
       "chroma_root_path": "data/test/embedded_database",
       "embedding_model": "voyage-3",
-      "llm_model": "mistralai/Mistral-7B-Instruct-v0.1",
+      "llm_model": "gpt-3.5-turbo",
       "prompt_template": "Answer the question based only on the following context:\n\n{context}\n\n---\n\nPlease provide your answer to the question: {question}"
     }
   }

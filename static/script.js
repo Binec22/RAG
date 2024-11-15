@@ -103,7 +103,7 @@ $(document).ready(function() {
                 msg: userMessage,
             },
             type: "POST",
-            url: "/seus/get",
+            url: "/get",
         }).done(function(data) {
             //var botHtml = '<div class="d-flex justify-content-start mb-4"><div class="img_cont_msg"><img src="https://i.ibb.co/fSNP7Rz/icons8-chatgpt-512.png" class="rounded-circle user_img_msg"></div><div class="msg_cotainer">' + data + '<span class="msg_time">' + str_time + '</span></div></div>';
             //$("#messageFormeight").append($.parseHTML(botHtml));
@@ -141,7 +141,7 @@ $(document).ready(function() {
 
 // Function to get documents from server
 async function fetchDocuments() {
-    const response = await fetch('/seus/documents');
+    const response = await fetch('/documents');
     const documents = await response.json();
     const listElement = document.getElementById('document-list');
 
@@ -157,19 +157,19 @@ async function fetchDocuments() {
         icon.classList.add('icon');
         switch (doc.extension) {
             case 'pdf':
-                icon.src = 'seus/static/document-pdf.svg';
+                icon.src = 'static/document-pdf.svg';
                 break;
 
             case 'PDF':
-                icon.src = 'seus/static/document-pdf.svg';
+                icon.src = 'static/document-pdf.svg';
                 break;
 
             case 'docs':
-                icon.src = 'seus/static/microsoft-word.svg';
+                icon.src = 'static/microsoft-word.svg';
                 break;                        
         
             default:
-                icon.src = 'seus/static/microsoft-word.svg';
+                icon.src = 'static/microsoft-word.svg';
         }
         listItem.appendChild(icon);
         listItem.appendChild(link);

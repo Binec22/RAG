@@ -17,6 +17,9 @@ from python_script.get_rag_chain import get_rag_chain
 from python_script.ConversationalRagChain import ConversationalRagChain
 
 
+DATA_PATH = "data/test/documents"
+LLM_MODEL = "gpt-3.5-turbo"
+
 def init_app():
     load_rag()
     local_app.config['UPLOAD_FOLDER'] = DATA_PATH

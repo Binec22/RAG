@@ -5,7 +5,7 @@ from langchain_core.messages import HumanMessage
 from typing import List, Dict, Any, Optional, ClassVar
 from langchain.callbacks.manager import CallbackManagerForChainRun, Callbacks
 from langchain.llms.base import BaseLanguageModel
-from pydantic import BaseModel
+from pydantic import BaseModel, Field
 
 from langchain_core.runnables import RunnableBinding
 
@@ -28,7 +28,10 @@ class ConversationalRagChain(Chain):
     context_key: str = "context"
     source_key: str = "source"
 
-    chat_history: ClassVar[List[Dict[str, str]]] = []
+    chat_history: List[Dict[str, str]] = Field(default_factory=list)
+
+    def __init__(self, **data):
+        super().__init__(**data)
 
     @property
     def input_keys(self) -> List[str]:
