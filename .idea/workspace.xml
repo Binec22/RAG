@@ -4,10 +4,18 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="7c8b8920-ebb2-41a9-8f3b-1d300a7abb04" name="Changes" comment="Working locally">
-      <change beforePath="$PROJECT_DIR$/.idea/inspectionProfiles/profiles_settings.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/inspectionProfiles/profiles_settings.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/python_script/get_llm_function.py" beforeDir="false" afterPath="$PROJECT_DIR$/python_script/get_llm_function.py" afterDir="false" />
+    <list default="true" id="7c8b8920-ebb2-41a9-8f3b-1d300a7abb04" name="Changes" comment="Create LLM and Embedding Classes and their unitest associated files">
+      <change afterPath="$PROJECT_DIR$/data/test/documents/Antonin_Larvor_Rapport_de_stage_2A.pdf" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/data/test/embedded_database/chroma_voyage-3/6f99efaf-2ba2-4f7e-bc4a-3fcba45d069e/data_level0.bin" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/data/test/embedded_database/chroma_voyage-3/6f99efaf-2ba2-4f7e-bc4a-3fcba45d069e/header.bin" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/data/test/embedded_database/chroma_voyage-3/6f99efaf-2ba2-4f7e-bc4a-3fcba45d069e/length.bin" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/data/test/embedded_database/chroma_voyage-3/6f99efaf-2ba2-4f7e-bc4a-3fcba45d069e/link_lists.bin" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/data/test/embedded_database/chroma_voyage-3/chroma.sqlite3" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/python_script/Embedding.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/python_script/LLM.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/python_script/__init__.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/unitest/llm_test.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/unitest/test_embeddings.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -135,7 +143,15 @@
       <option name="project" value="LOCAL" />
       <updated>1731662204372</updated>
     </task>
-    <option name="localTasksCounter" value="8" />
+    <task id="LOCAL-00008" summary="Create LLM and Embedding Classes and their unitest associated files">
+      <option name="closed" value="true" />
+      <created>1731684920389</created>
+      <option name="number" value="00008" />
+      <option name="presentableId" value="LOCAL-00008" />
+      <option name="project" value="LOCAL" />
+      <updated>1731684920389</updated>
+    </task>
+    <option name="localTasksCounter" value="9" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -187,6 +203,7 @@
     <MESSAGE value="Second push" />
     <MESSAGE value="First Version" />
     <MESSAGE value="Working locally" />
-    <option name="LAST_COMMIT_MESSAGE" value="Working locally" />
+    <MESSAGE value="Create LLM and Embedding Classes and their unitest associated files" />
+    <option name="LAST_COMMIT_MESSAGE" value="Create LLM and Embedding Classes and their unitest associated files" />
   </component>
 </project>
