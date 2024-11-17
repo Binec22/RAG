@@ -6,7 +6,7 @@ class Embeddings:
     def __init__(self, model_name="voyage-3", load=True):
         """Initialise l'objet Embeddings avec un nom de modèle par défaut et charge la clé API spécifique si
         nécessaire."""
-        self.model_name = model_name
+        self.model_name: str = model_name
         if load:
             self.embeddings = self.load_model()
         else:

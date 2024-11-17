@@ -5,17 +5,9 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="7c8b8920-ebb2-41a9-8f3b-1d300a7abb04" name="Changes" comment="Create LLM and Embedding Classes and their unitest associated files">
-      <change afterPath="$PROJECT_DIR$/data/test/documents/Antonin_Larvor_Rapport_de_stage_2A.pdf" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/data/test/embedded_database/chroma_voyage-3/6f99efaf-2ba2-4f7e-bc4a-3fcba45d069e/data_level0.bin" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/data/test/embedded_database/chroma_voyage-3/6f99efaf-2ba2-4f7e-bc4a-3fcba45d069e/header.bin" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/data/test/embedded_database/chroma_voyage-3/6f99efaf-2ba2-4f7e-bc4a-3fcba45d069e/length.bin" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/data/test/embedded_database/chroma_voyage-3/6f99efaf-2ba2-4f7e-bc4a-3fcba45d069e/link_lists.bin" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/data/test/embedded_database/chroma_voyage-3/chroma.sqlite3" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/python_script/Embedding.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/python_script/LLM.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/python_script/__init__.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/unitest/llm_test.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/unitest/test_embeddings.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/python_script/RagChain.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/python_script/Embedding.py" beforeDir="false" afterPath="$PROJECT_DIR$/python_script/Embedding.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -52,16 +44,16 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent"><![CDATA[{
-  "keyToString": {
-    "Python.local_app.executor": "Run",
-    "RunOnceActivity.OpenProjectViewOnStart": "true",
-    "RunOnceActivity.ShowReadmeOnStart": "true",
-    "git-widget-placeholder": "class__refactoring",
-    "last_opened_file_path": "C:/Users/Binec/PycharmProjects/RAG",
-    "settings.editor.selected.configurable": "Errors"
+  <component name="PropertiesComponent">{
+  &quot;keyToString&quot;: {
+    &quot;Python.local_app.executor&quot;: &quot;Run&quot;,
+    &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
+    &quot;git-widget-placeholder&quot;: &quot;class__refactoring&quot;,
+    &quot;last_opened_file_path&quot;: &quot;C:/Users/Binec/PycharmProjects/RAG&quot;,
+    &quot;settings.editor.selected.configurable&quot;: &quot;Errors&quot;
   }
-}]]></component>
+}</component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
       <recent name="C:\Users\Binec\PycharmProjects\RAG\python_script" />
@@ -151,7 +143,15 @@
       <option name="project" value="LOCAL" />
       <updated>1731684920389</updated>
     </task>
-    <option name="localTasksCounter" value="9" />
+    <task id="LOCAL-00009" summary="Create LLM and Embedding Classes and their unitest associated files">
+      <option name="closed" value="true" />
+      <created>1731685193676</created>
+      <option name="number" value="00009" />
+      <option name="presentableId" value="LOCAL-00009" />
+      <option name="project" value="LOCAL" />
+      <updated>1731685193676</updated>
+    </task>
+    <option name="localTasksCounter" value="10" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
