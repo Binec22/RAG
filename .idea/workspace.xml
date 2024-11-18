@@ -4,14 +4,11 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="7c8b8920-ebb2-41a9-8f3b-1d300a7abb04" name="Changes" comment="Class RagChain">
-      <change afterPath="$PROJECT_DIR$/python_script/Database.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/RAG.iml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/RAG.iml" afterDir="false" />
+    <list default="true" id="7c8b8920-ebb2-41a9-8f3b-1d300a7abb04" name="Changes" comment="Database class + Embedding modified">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/python_script/Embedding.py" beforeDir="false" afterPath="$PROJECT_DIR$/python_script/Embedding.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/python_script/LLM.py" beforeDir="false" afterPath="$PROJECT_DIR$/python_script/LLM.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/python_script/RagChain.py" beforeDir="false" afterPath="$PROJECT_DIR$/python_script/RagChain.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/unitest/test_embeddings.py" beforeDir="false" afterPath="$PROJECT_DIR$/unitest/test_embeddings.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/unitest/llm_test.py" beforeDir="false" afterPath="$PROJECT_DIR$/unitest/llm_test.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -101,7 +98,7 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1731508324671</updated>
-      <workItem from="1731917377429" duration="8317000" />
+      <workItem from="1731917377429" duration="9563000" />
     </task>
     <task id="LOCAL-00001" summary="First Version">
       <option name="closed" value="true" />
@@ -183,7 +180,15 @@
       <option name="project" value="LOCAL" />
       <updated>1731877486186</updated>
     </task>
-    <option name="localTasksCounter" value="11" />
+    <task id="LOCAL-00011" summary="Database class + Embedding modified">
+      <option name="closed" value="true" />
+      <created>1731939586814</created>
+      <option name="number" value="00011" />
+      <option name="presentableId" value="LOCAL-00011" />
+      <option name="project" value="LOCAL" />
+      <updated>1731939586814</updated>
+    </task>
+    <option name="localTasksCounter" value="12" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -240,6 +245,7 @@
     <MESSAGE value="Working locally" />
     <MESSAGE value="Create LLM and Embedding Classes and their unitest associated files" />
     <MESSAGE value="Class RagChain" />
-    <option name="LAST_COMMIT_MESSAGE" value="Class RagChain" />
+    <MESSAGE value="Database class + Embedding modified" />
+    <option name="LAST_COMMIT_MESSAGE" value="Database class + Embedding modified" />
   </component>
 </project>

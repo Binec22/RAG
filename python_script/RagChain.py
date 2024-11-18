@@ -17,7 +17,7 @@ class RagChain:
     def __init__(self, parameters: dict):
         self.parameters: dict = self.load_parametres(parameters)
         self.embedding_model: Embeddings = Embeddings(model_name=self.parameters["embedding_model"]).model
-        self.llm_model = LLM(model_name=self.parameters["llm_model"]).llm_model
+        self.llm_model = LLM(model_name=self.parameters["llm_model"]).model
         self.database = self.load_database()
         self.retriever = self.load_retriever()
         self.rag_chain = self.load_rag_chain()
