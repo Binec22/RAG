@@ -4,10 +4,14 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="7c8b8920-ebb2-41a9-8f3b-1d300a7abb04" name="Changes" comment="Create LLM and Embedding Classes and their unitest associated files">
-      <change afterPath="$PROJECT_DIR$/python_script/RagChain.py" afterDir="false" />
+    <list default="true" id="7c8b8920-ebb2-41a9-8f3b-1d300a7abb04" name="Changes" comment="Class RagChain">
+      <change afterPath="$PROJECT_DIR$/python_script/Database.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/RAG.iml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/RAG.iml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/python_script/Embedding.py" beforeDir="false" afterPath="$PROJECT_DIR$/python_script/Embedding.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/python_script/LLM.py" beforeDir="false" afterPath="$PROJECT_DIR$/python_script/LLM.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/python_script/RagChain.py" beforeDir="false" afterPath="$PROJECT_DIR$/python_script/RagChain.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/unitest/test_embeddings.py" beforeDir="false" afterPath="$PROJECT_DIR$/unitest/test_embeddings.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -19,6 +23,17 @@
       <list>
         <option value="Python Script" />
       </list>
+    </option>
+  </component>
+  <component name="FlaskConsoleOptions" custom-start-script="import sys; print('Python %s on %s' % (sys.version, sys.platform)); sys.path.extend([WORKING_DIR_AND_PYTHON_PATHS])&#10;from flask.cli import ScriptInfo, NoAppException&#10;for module in [&quot;main.py&quot;, &quot;wsgi.py&quot;, &quot;app.py&quot;]:&#10;    try: locals().update(ScriptInfo(app_import_path=module, create_app=None).load_app().make_shell_context()); print(&quot;\nFlask App: %s&quot; % app.import_name); break&#10;    except NoAppException: pass">
+    <envs>
+      <env key="FLASK_APP" value="app" />
+    </envs>
+    <option name="myCustomStartScript" value="import sys; print('Python %s on %s' % (sys.version, sys.platform)); sys.path.extend([WORKING_DIR_AND_PYTHON_PATHS])&#10;from flask.cli import ScriptInfo, NoAppException&#10;for module in [&quot;main.py&quot;, &quot;wsgi.py&quot;, &quot;app.py&quot;]:&#10;    try: locals().update(ScriptInfo(app_import_path=module, create_app=None).load_app().make_shell_context()); print(&quot;\nFlask App: %s&quot; % app.import_name); break&#10;    except NoAppException: pass" />
+    <option name="myEnvs">
+      <map>
+        <entry key="FLASK_APP" value="app" />
+      </map>
     </option>
   </component>
   <component name="Git.Rebase.Settings">
@@ -44,18 +59,25 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent">{
-  &quot;keyToString&quot;: {
-    &quot;Python.local_app.executor&quot;: &quot;Run&quot;,
-    &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
-    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
-    &quot;git-widget-placeholder&quot;: &quot;class__refactoring&quot;,
-    &quot;last_opened_file_path&quot;: &quot;C:/Users/Binec/PycharmProjects/RAG&quot;,
-    &quot;settings.editor.selected.configurable&quot;: &quot;Errors&quot;
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "Python.local_app.executor": "Run",
+    "RunOnceActivity.OpenProjectViewOnStart": "true",
+    "RunOnceActivity.ShowReadmeOnStart": "true",
+    "git-widget-placeholder": "class__refactoring",
+    "last_opened_file_path": "C:/Users/Binec/PycharmProjects/RAG",
+    "node.js.detected.package.eslint": "true",
+    "node.js.detected.package.tslint": "true",
+    "node.js.selected.package.eslint": "(autodetect)",
+    "node.js.selected.package.tslint": "(autodetect)",
+    "nodejs_package_manager_path": "npm",
+    "settings.editor.selected.configurable": "reference.settingsdialog.project.grazie",
+    "vue.rearranger.settings.migration": "true"
   }
-}</component>
+}]]></component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
+      <recent name="C:\Users\Binec\PycharmProjects\RAG" />
       <recent name="C:\Users\Binec\PycharmProjects\RAG\python_script" />
     </key>
     <key name="MoveFile.RECENT_KEYS">
@@ -66,7 +88,8 @@
   <component name="SharedIndexes">
     <attachedChunks>
       <set>
-        <option value="bundled-python-sdk-d68999036c7f-d3b881c8e49f-com.jetbrains.pycharm.community.sharedIndexes.bundled-PC-233.14475.56" />
+        <option value="bundled-js-predefined-d6986cc7102b-e768b9ed790e-JavaScript-PY-243.21565.199" />
+        <option value="bundled-python-sdk-cab1f2013843-4ae2d6a61b08-com.jetbrains.pycharm.pro.sharedIndexes.bundled-PY-243.21565.199" />
       </set>
     </attachedChunks>
   </component>
@@ -78,6 +101,7 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1731508324671</updated>
+      <workItem from="1731917377429" duration="8317000" />
     </task>
     <task id="LOCAL-00001" summary="First Version">
       <option name="closed" value="true" />
@@ -151,8 +175,19 @@
       <option name="project" value="LOCAL" />
       <updated>1731685193676</updated>
     </task>
-    <option name="localTasksCounter" value="10" />
+    <task id="LOCAL-00010" summary="Class RagChain">
+      <option name="closed" value="true" />
+      <created>1731877486186</created>
+      <option name="number" value="00010" />
+      <option name="presentableId" value="LOCAL-00010" />
+      <option name="project" value="LOCAL" />
+      <updated>1731877486186</updated>
+    </task>
+    <option name="localTasksCounter" value="11" />
     <servers />
+  </component>
+  <component name="TypeScriptGeneratedFilesManager">
+    <option name="version" value="3" />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
     <option name="OPEN_GENERIC_TABS">
@@ -204,6 +239,7 @@
     <MESSAGE value="First Version" />
     <MESSAGE value="Working locally" />
     <MESSAGE value="Create LLM and Embedding Classes and their unitest associated files" />
-    <option name="LAST_COMMIT_MESSAGE" value="Create LLM and Embedding Classes and their unitest associated files" />
+    <MESSAGE value="Class RagChain" />
+    <option name="LAST_COMMIT_MESSAGE" value="Class RagChain" />
   </component>
 </project>

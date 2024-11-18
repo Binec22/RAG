@@ -35,7 +35,7 @@ class TestEmbeddings(unittest.TestCase):
     def test_load_model_with_load_false(self):
         """Test que le modèle n'est pas chargé avec load=False."""
         embeddings_instance = Embeddings(model_name="voyage-3", load=False)
-        self.assertIsNone(embeddings_instance.embeddings, "Le modèle ne doit pas être chargé immédiatement.")
+        self.assertIsNone(embeddings_instance.model, "Le modèle ne doit pas être chargé immédiatement.")
 
         # Vérifier que load_model() charge correctement le modèle
         model = embeddings_instance.load_model()
@@ -44,7 +44,7 @@ class TestEmbeddings(unittest.TestCase):
     def test_load_model_invalid_model_with_load_false(self):
         """Test le chargement d'un modèle invalide avec load=False."""
         embeddings_instance = Embeddings(model_name="invalide", load=False)
-        self.assertIsNone(embeddings_instance.embeddings, "Le modèle ne doit pas être chargé immédiatement.")
+        self.assertIsNone(embeddings_instance.model, "Le modèle ne doit pas être chargé immédiatement.")
 
         with self.assertRaises(ValueError):
             embeddings_instance.load_model()  # Tentative de chargement avec un modèle invalide

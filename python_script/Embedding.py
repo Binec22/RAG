@@ -1,64 +1,78 @@
+import logging
 import os
 from dotenv import load_dotenv
+
+from langchain_voyageai import VoyageAIEmbeddings
+from langchain_openai import OpenAIEmbeddings
+from langchain_community.embeddings import HuggingFaceEmbeddings
 
 
 class Embeddings:
     def __init__(self, model_name="voyage-3", load=True):
         """Initialise l'objet Embeddings avec un nom de modèle par défaut et charge la clé API spécifique si
         nécessaire."""
-        self.model_name: str = model_name
+        self._model_name = model_name
         if load:
-            self.embeddings = self.load_model()
+            self.model = self.load_model()
         else:
-            self.embeddings = None
+            self.model = None
+
+    @property
+    def model_name(self):
+        return self._model_name
+
+    @model_name.setter
+    def model_name(self, value):
+        if not isinstance(value, str):
+            raise ValueError("Le nom du modèle doit être une chaîne")
+        self._model_name = value
 
     def load_api_key(self):
         """Charge la clé API spécifique au modèle depuis les variables d'environnement ou fixe la clé pour les
         modèles 'voyage'."""
         load_dotenv()  # Charge les variables d'environnement depuis le fichier .env
-        api_key = None
 
         # Si le modèle contient "voyage", utiliser une clé fixe
-        if "voyage" in self.model_name.lower():
-            if not os.getenv("VOYAGE_API_KEY"):
-                raise APIKeyMissingError(self.model_name)
-            os.environ["VOYAGE_API_KEY"] = os.getenv("VOYAGE_API_KEY")
+        try:
+            if "voyage" in self.model_name.lower():
+                api_key = os.getenv("VOYAGE_API_KEY")
+                if not api_key:
+                    raise APIKeyMissingError(self.model_name)
+                os.environ["VOYAGE_API_KEY"] = api_key
 
-        elif "openai" in self.model_name.lower():
-            if not os.getenv("OPENAI_API_KEY"):
-                raise APIKeyMissingError(self.model_name)
-            os.environ["OPENAI_API_KEY"] = os.getenv("OPENAI_API_KEY")
+            elif "openai" in self.model_name.lower():
+                api_key = os.getenv("OPENAI_API_KEY")
+                if not api_key:
+                    raise APIKeyMissingError(self.model_name)
+                os.environ["OPENAI_API_KEY"] = api_key
+        except Exception as e:
+            raise InvalidAPIKeyError(self.model_name, str(e))
+
+    @classmethod
+    def create_embedding_model(cls, model_name):
+        """Méthode de factory pour créer des modèles d'embeddings"""
+        embeddings_map = {
+            "sentence-transformers/all-mpnet-base-v2": lambda: HuggingFaceEmbeddings(
+                model_name="sentence-transformers/all-mpnet-base-v2"),
+            "openai": OpenAIEmbeddings,
+            "voyage-3": lambda: VoyageAIEmbeddings(model="voyage-3"),
+            "voyage-law-2": lambda: VoyageAIEmbeddings(model="voyage-law-2"),
+            "voyage-multilingual-2": lambda: VoyageAIEmbeddings(model="voyage-multilingual-2")
+        }
+
+        if model_name not in embeddings_map:
+            raise ValueError(f"Modèle {model_name} non supporté")
+
+        return embeddings_map[model_name]()
 
     def load_model(self):
         """Charge le modèle d'embeddings en fonction du nom spécifié."""
-        # Vérification de la clé API avant de charger le modèle
-        self.load_api_key()
-
-        # Logique pour charger le modèle
-        if self.model_name == "sentence-transformers/all-mpnet-base-v2":
-            from langchain_community.embeddings import HuggingFaceEmbeddings
-            self.embeddings = HuggingFaceEmbeddings(model_name="sentence-transformers/all-mpnet-base-v2")
-
-        elif self.model_name == "openai":
-            from langchain_openai import OpenAIEmbeddings
-            self.embeddings = OpenAIEmbeddings()
-
-        elif self.model_name == "voyage-3":
-            from langchain_voyageai import VoyageAIEmbeddings
-            self.embeddings = VoyageAIEmbeddings(model="voyage-3")
-
-        elif self.model_name == "voyage-law-2":
-            from langchain_voyageai import VoyageAIEmbeddings
-            self.embeddings = VoyageAIEmbeddings(model="voyage-law-2")
-
-        elif self.model_name == "voyage-multilingual-2":
-            from langchain_voyageai import VoyageAIEmbeddings
-            self.embeddings = VoyageAIEmbeddings(model="voyage-multilingual-2")
-
-        else:
-            raise ValueError("Invalid model name. Please choose a valid model.")
-
-        return self.embeddings
+        try:
+            self.load_api_key()
+            return self.create_embedding_model(self.model_name)
+        except Exception as e:
+            logging.error(f"Erreur lors du chargement du modèle : {e}")
+            raise
 
 
 class APIKeyMissingError(Exception):

@@ -16,8 +16,8 @@ from populate_database import find_chroma_path
 class RagChain:
     def __init__(self, parameters: dict):
         self.parameters: dict = self.load_parametres(parameters)
-        self.embedding_model: Embeddings = Embeddings(model_name=self.parameters["embedding_model"])
-        self.llm_model: LLM = LLM(model_name=self.parameters["llm_model"])
+        self.embedding_model: Embeddings = Embeddings(model_name=self.parameters["embedding_model"]).model
+        self.llm_model = LLM(model_name=self.parameters["llm_model"]).llm_model
         self.database = self.load_database()
         self.retriever = self.load_retriever()
         self.rag_chain = self.load_rag_chain()
@@ -121,7 +121,7 @@ class RagChain:
         need_reload_retriever = False
 
         if old_parameters["embedding_model"] != self.parameters["embedding_model"]:
-            self.embedding_model = Embeddings(model_name=self.parameters["embedding_model"])
+            self.embedding_model = Embeddings(model_name=self.parameters["embedding_model"]).model
             need_reload_db = True
             need_reload_retriever = True
 

@@ -15,11 +15,11 @@ class LLM:
         self.cache_dir = cache_dir if cache_dir else None
         self.hf_token = None
         self.llm_model = None
+        self.temperature = temperature
         if load:
             self.load_model()
         if 0 < temperature > 1:
             raise TemperatureInvalidValue(temperature)
-        self.temperature = temperature
 
     def load_api_key(self):
         """Charge la clé API spécifique au modèle depuis les variables d'environnement ou fixe la clé pour les
