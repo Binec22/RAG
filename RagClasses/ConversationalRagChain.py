@@ -66,7 +66,8 @@ class ConversationalRagChain(Chain):
             **kwargs,
         )
 
-    def format_standalone_response(self, response):
+    @staticmethod
+    def format_standalone_response(response):
         """Removes the prompt from the generated response"""
 
         end_marker = "<|endofprompt|>"
@@ -75,7 +76,8 @@ class ConversationalRagChain(Chain):
             response = response[marker_index + len(end_marker):].strip()
         return response
 
-    def format_outputs(self, output: Dict[str, Any]):
+    @staticmethod
+    def format_outputs(output: Dict[str, Any]):
         """Removes the prompt from the generated response
         Regroups the contexts and sources of different documents in dedicated lists."""
 

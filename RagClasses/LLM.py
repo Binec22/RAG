@@ -21,22 +21,15 @@ class LLM:
         if not 0 <= temperature <= 1:
             raise ValueError(f"Temperature must be between 0 and 1, got {temperature}")
 
-        self._model_name = model_name
+        self.model_name = model_name
         self._cache_dir = cache_dir
         self._hf_token = None
-        self._model = None
+        self.model = None
         self._temperature = temperature
-
+        print("1")
         if load:
             self.load_model()
-
-    @property
-    def model_name(self):
-        return self._model_name
-
-    @property
-    def model(self):
-        return self.model
+            print("2")
 
     def __load_api_key(self):
         """Charge les clés API depuis les variables d'environnement"""
@@ -44,6 +37,7 @@ class LLM:
 
         if "openai" in self.model_name.lower():
             api_key = os.getenv("OPENAI_API_KEY")
+            print(api_key)
             if not api_key:
                 raise APIKeyMissingError(self.model_name)
             os.environ["OPENAI_API_KEY"] = api_key
@@ -98,6 +92,7 @@ class LLM:
                 return
 
         raise UnknownModelException(self.model_name)
+
 
 
 class APIKeyMissingError(Exception):

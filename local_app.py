@@ -10,11 +10,10 @@ from python_script.parameters import load_config
 
 global DATA_PATH
 load_config('test')
-from python_script.parameters import CHROMA_ROOT_PATH, EMBEDDING_MODEL, LLM_MODEL, PROMPT_TEMPLATE, DATA_PATH, \
-    REPHRASING_PROMPT, STANDALONE_PROMPT, ROUTER_DECISION_PROMPT
+from python_script.parameters import LLM_MODEL, DATA_PATH
 from python_script.get_llm_function import get_llm_function
 from python_script.get_rag_chain import get_rag_chain
-from python_script.ConversationalRagChain import ConversationalRagChain
+from RagClasses.ConversationalRagChain import ConversationalRagChain
 
 
 DATA_PATH = "data/test/documents"

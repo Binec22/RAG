@@ -7,18 +7,12 @@ local_app = Flask(__name__)
 
 sys.path.append(os.path.join(os.path.dirname(__file__), 'python_script'))
 from python_script.parameters import load_config
-from python_script.Embedding import Embeddings
-from python_script.LLM import LLM
-from python_script.RagChain import RagChain
-from python_script.Database import Database
+from RagClasses.RagChain import RagChain
 
 global DATA_PATH
 load_config('test')
-from python_script.parameters import CHROMA_ROOT_PATH, EMBEDDING_MODEL, LLM_MODEL, PROMPT_TEMPLATE, DATA_PATH, \
-    REPHRASING_PROMPT, STANDALONE_PROMPT, ROUTER_DECISION_PROMPT
-from python_script.get_llm_function import get_llm_function
-from python_script.get_rag_chain import get_rag_chain
-from python_script.ConversationalRagChain import ConversationalRagChain
+from python_script.parameters import DATA_PATH
+from RagClasses.ConversationalRagChain import ConversationalRagChain
 
 
 DATA_PATH = "data/test/documents"
