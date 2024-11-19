@@ -80,7 +80,6 @@ def chat():
 
 
 def get_Chat_response(query):
-    print("query: ", str(query))
     inputs = {
         "query": str(query),
         "chat_history": []
@@ -92,7 +91,6 @@ def get_Chat_response(query):
         'context': res['context'],
         'source': res['source']
     })
-    print(res['result'])
     return output
 
 
@@ -110,7 +108,5 @@ def clear_chat_history():
 
 
 if __name__ == '__main__':
-    print("1")
     init_app()
-    print("2")
     local_app.run(port=5000, debug=False)

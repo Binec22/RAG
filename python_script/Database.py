@@ -96,7 +96,8 @@ class Database:
 
         return documents
 
-    def _convert_llamaindexdoc_to_langchaindoc(self, documents: list):
+    @staticmethod
+    def _convert_llamaindexdoc_to_langchaindoc(documents: list):
         """
         Convert llamaindex documents to langchain documents
 
@@ -111,7 +112,8 @@ class Database:
             for doc in documents
         ]
 
-    def split_documents(self, documents: list[Document]):
+    @staticmethod
+    def split_documents(documents: list[Document]):
         """
         Split documents into smaller chunks
 
@@ -128,6 +130,36 @@ class Database:
             is_separator_regex=False,
         )
         return text_splitter.split_documents(documents)
+
+    @staticmethod
+    def _calculate_chunk_ids(chunks):
+        """
+        Generate unique IDs for document chunks
+
+        Args:
+            chunks (list): Document chunks
+
+        Returns:
+            list: Chunks with added ID metadata
+        """
+        last_page_id = None
+        current_chunk_index = 0
+
+        for chunk in chunks:
+            source = chunk.metadata.get("file_name")
+            page = str(chunk.metadata.get("page"))
+            current_page_id = f"{source}:p{page}"
+
+            current_chunk_index = (
+                current_chunk_index + 1
+                if current_page_id == last_page_id
+                else 0
+            )
+
+            chunk.metadata["id"] = f"{current_page_id}:c{current_chunk_index}"
+            last_page_id = current_page_id
+
+        return chunks
 
     def add_to_chroma(self, chunks: list[Document]):
         """
@@ -191,35 +223,6 @@ class Database:
 
         return model_path
 
-    def _calculate_chunk_ids(self, chunks):
-        """
-        Generate unique IDs for document chunks
-
-        Args:
-            chunks (list): Document chunks
-
-        Returns:
-            list: Chunks with added ID metadata
-        """
-        last_page_id = None
-        current_chunk_index = 0
-
-        for chunk in chunks:
-            source = chunk.metadata.get("file_name")
-            page = str(chunk.metadata.get("page"))
-            current_page_id = f"{source}:p{page}"
-
-            current_chunk_index = (
-                current_chunk_index + 1
-                if current_page_id == last_page_id
-                else 0
-            )
-
-            chunk.metadata["id"] = f"{current_page_id}:c{current_chunk_index}"
-            last_page_id = current_page_id
-
-        return chunks
-
     def clear_database(self, chroma_subfolder_name=None):
         """
         Clear entire database or specific subfolder
@@ -280,7 +283,7 @@ class Database:
         db = cls(args.config)
 
         if args.clear:
-            print("✨ Clearing Database")
+            print("Clearing Database...")
             subfolder_name = (
                 f"chroma_{db.EMBEDDING_MODEL}"
                 if args.config else None
@@ -290,7 +293,7 @@ class Database:
 
         if args.config:
             if args.reset:
-                print("✨ Resetting Database")
+                print("Resetting Database...")
                 subfolder_name = f"chroma_{db.EMBEDDING_MODEL}"
                 db.clear_database(subfolder_name)
 
@@ -299,7 +302,6 @@ class Database:
 
 class ProgressPyPDFDirectoryLoader(PyPDFDirectoryLoader):
     """Enhanced PDF directory loader with progress tracking"""
-
     def load(self) -> List[Document]:
         p = Path(self.path)
         docs = []

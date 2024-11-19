@@ -4,11 +4,15 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="7c8b8920-ebb2-41a9-8f3b-1d300a7abb04" name="Changes" comment="Database class + Embedding modified">
+    <list default="true" id="7c8b8920-ebb2-41a9-8f3b-1d300a7abb04" name="Changes" comment="LLM">
+      <change afterPath="$PROJECT_DIR$/python_script/TemplateApp.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/python_script/LLM.py" beforeDir="false" afterPath="$PROJECT_DIR$/python_script/LLM.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/python_script/RagChain.py" beforeDir="false" afterPath="$PROJECT_DIR$/python_script/RagChain.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/unitest/llm_test.py" beforeDir="false" afterPath="$PROJECT_DIR$/unitest/llm_test.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/data/test/embedded_database/chroma_voyage-3/6f99efaf-2ba2-4f7e-bc4a-3fcba45d069e/length.bin" beforeDir="false" afterPath="$PROJECT_DIR$/data/test/embedded_database/chroma_voyage-3/6f99efaf-2ba2-4f7e-bc4a-3fcba45d069e/length.bin" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/data/test/embedded_database/chroma_voyage-3/chroma.sqlite3" beforeDir="false" afterPath="$PROJECT_DIR$/data/test/embedded_database/chroma_voyage-3/chroma.sqlite3" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/local_app2.py" beforeDir="false" afterPath="$PROJECT_DIR$/local_app2.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/python_script/ConversationalRagChain.py" beforeDir="false" afterPath="$PROJECT_DIR$/python_script/ConversationalRagChain.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/python_script/Database.py" beforeDir="false" afterPath="$PROJECT_DIR$/python_script/Database.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/python_script/populate_database.py" beforeDir="false" afterPath="$PROJECT_DIR$/python_script/populate_database.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -44,6 +48,18 @@
     </option>
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
   </component>
+  <component name="GitHubPullRequestSearchHistory">{
+  &quot;lastFilter&quot;: {
+    &quot;state&quot;: &quot;OPEN&quot;,
+    &quot;assignee&quot;: &quot;Binec22&quot;
+  }
+}</component>
+  <component name="GithubPullRequestsUISettings">{
+  &quot;selectedUrlAndAccountId&quot;: {
+    &quot;url&quot;: &quot;https://github.com/Binec22/RAG.git&quot;,
+    &quot;accountId&quot;: &quot;cb6aa70f-8079-4569-822d-7d0900d1d9ea&quot;
+  }
+}</component>
   <component name="MarkdownSettingsMigration">
     <option name="stateVersion" value="1" />
   </component>
@@ -56,22 +72,22 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent"><![CDATA[{
-  "keyToString": {
-    "Python.local_app.executor": "Run",
-    "RunOnceActivity.OpenProjectViewOnStart": "true",
-    "RunOnceActivity.ShowReadmeOnStart": "true",
-    "git-widget-placeholder": "class__refactoring",
-    "last_opened_file_path": "C:/Users/Binec/PycharmProjects/RAG",
-    "node.js.detected.package.eslint": "true",
-    "node.js.detected.package.tslint": "true",
-    "node.js.selected.package.eslint": "(autodetect)",
-    "node.js.selected.package.tslint": "(autodetect)",
-    "nodejs_package_manager_path": "npm",
-    "settings.editor.selected.configurable": "reference.settingsdialog.project.grazie",
-    "vue.rearranger.settings.migration": "true"
+  <component name="PropertiesComponent">{
+  &quot;keyToString&quot;: {
+    &quot;Python.local_app.executor&quot;: &quot;Run&quot;,
+    &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
+    &quot;git-widget-placeholder&quot;: &quot;class__refactoring&quot;,
+    &quot;last_opened_file_path&quot;: &quot;C:/Users/Binec/PycharmProjects/RAG&quot;,
+    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
+    &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
+    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
+    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
+    &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
+    &quot;settings.editor.selected.configurable&quot;: &quot;reference.settingsdialog.project.grazie&quot;,
+    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
   }
-}]]></component>
+}</component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
       <recent name="C:\Users\Binec\PycharmProjects\RAG" />
@@ -98,7 +114,8 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1731508324671</updated>
-      <workItem from="1731917377429" duration="9563000" />
+      <workItem from="1731917377429" duration="10035000" />
+      <workItem from="1732006046672" duration="7644000" />
     </task>
     <task id="LOCAL-00001" summary="First Version">
       <option name="closed" value="true" />
@@ -188,7 +205,15 @@
       <option name="project" value="LOCAL" />
       <updated>1731939586814</updated>
     </task>
-    <option name="localTasksCounter" value="12" />
+    <task id="LOCAL-00012" summary="LLM">
+      <option name="closed" value="true" />
+      <created>1731941900675</created>
+      <option name="number" value="00012" />
+      <option name="presentableId" value="LOCAL-00012" />
+      <option name="project" value="LOCAL" />
+      <updated>1731941900675</updated>
+    </task>
+    <option name="localTasksCounter" value="13" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -246,6 +271,7 @@
     <MESSAGE value="Create LLM and Embedding Classes and their unitest associated files" />
     <MESSAGE value="Class RagChain" />
     <MESSAGE value="Database class + Embedding modified" />
-    <option name="LAST_COMMIT_MESSAGE" value="Database class + Embedding modified" />
+    <MESSAGE value="LLM" />
+    <option name="LAST_COMMIT_MESSAGE" value="LLM" />
   </component>
 </project>

@@ -146,7 +146,7 @@ def add_to_chroma(chunks: list[Document]):
                 batch = new_chunks[i:i + batch_size]
                 new_chunk_ids = [chunk.metadata["id"] for chunk in batch]
                 db.add_documents(batch, ids=new_chunk_ids)
-                db.persist()
+                #db.persist()
                 pbar.update(len(batch))
 
     else:

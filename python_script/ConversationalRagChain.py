@@ -95,7 +95,7 @@ class ConversationalRagChain(Chain):
         sources = []
         for doc in documents:
             contexts.append(doc.page_content)
-            # TODO Update database which has the last metadata storage system
+            #TODO Update database which has the last metadata storage system
             try:
                 sources.append(doc.metadata['file_name'])
             except:
