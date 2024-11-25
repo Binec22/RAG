@@ -5,17 +5,11 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="7c8b8920-ebb2-41a9-8f3b-1d300a7abb04" name="Changes" comment="TemplateApp class">
-      <change afterPath="$PROJECT_DIR$/RagClasses/AppConfig.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/local_app3.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/local_app.py" beforeDir="false" afterPath="$PROJECT_DIR$/local_app.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/local_app2.py" beforeDir="false" afterPath="$PROJECT_DIR$/local_app2.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/python_script/ConversationalRagChain.py" beforeDir="false" afterPath="$PROJECT_DIR$/RagClasses/ConversationalRagChain.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/python_script/Database.py" beforeDir="false" afterPath="$PROJECT_DIR$/RagClasses/Database.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/python_script/Embedding.py" beforeDir="false" afterPath="$PROJECT_DIR$/RagClasses/Embedding.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/python_script/LLM.py" beforeDir="false" afterPath="$PROJECT_DIR$/RagClasses/LLM.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/python_script/RagChain.py" beforeDir="false" afterPath="$PROJECT_DIR$/RagClasses/RagChain.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/python_script/TemplateApp.py" beforeDir="false" afterPath="$PROJECT_DIR$/RagClasses/TemplateApp.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/RagClasses/Database.py" beforeDir="false" afterPath="$PROJECT_DIR$/RagClasses/Database.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/RagClasses/Embedding.py" beforeDir="false" afterPath="$PROJECT_DIR$/RagClasses/Embedding.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/RagClasses/RagChain.py" beforeDir="false" afterPath="$PROJECT_DIR$/RagClasses/RagChain.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/RagClasses/TemplateApp.py" beforeDir="false" afterPath="$PROJECT_DIR$/RagClasses/TemplateApp.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -82,7 +76,7 @@
     "RunOnceActivity.OpenProjectViewOnStart": "true",
     "RunOnceActivity.ShowReadmeOnStart": "true",
     "RunOnceActivity.git.unshallow": "true",
-    "git-widget-placeholder": "class__refactoring",
+    "git-widget-placeholder": "class__refactoring__gamer",
     "last_opened_file_path": "C:/Users/Binec/PycharmProjects/RAG",
     "node.js.detected.package.eslint": "true",
     "node.js.detected.package.tslint": "true",

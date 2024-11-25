@@ -7,7 +7,7 @@ from langchain_openai import OpenAIEmbeddings
 from langchain_community.embeddings import HuggingFaceEmbeddings
 
 
-class Embeddings:
+class CustomEmbeddings:
     def __init__(self, model_name="voyage-3", load=True):
         """Initialise l'objet Embeddings avec un nom de modèle par défaut et charge la clé API spécifique si
         nécessaire."""

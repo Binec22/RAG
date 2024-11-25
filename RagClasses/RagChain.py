@@ -8,28 +8,21 @@ from langchain_chroma import Chroma
 from langchain_core.prompts import ChatPromptTemplate, MessagesPlaceholder
 
 sys.path.append(os.path.abspath(os.path.join(os.path.dirname(__file__), '../python_script')))
-from Embedding import Embeddings
+from Embedding import CustomEmbeddings
 from LLM import LLM
-from populate_database import find_chroma_path
+from Database import Database
 from AppConfig import AppConfig
 
 
 class RagChain:
     def __init__(self, config):
         self.config = AppConfig(config=config).as_dict()
-        self.embedding_model: Embeddings = Embeddings(model_name=self.config["embedding_model"]).model
+        self.embedding_model: CustomEmbeddings = CustomEmbeddings(model_name=self.config["embedding_model"]).model
         llm = LLM(model_name=self.config["llm_model"])
         self.llm_model = llm.model
-        self.database = self.load_database()
+        self.database = Database(config=self.config).database
         self.retriever = self.load_retriever()
         self.rag_chain = self.load_rag_chain()
-
-    def load_database(self):
-        # TODO changer la logique de storage (cf chroma_root_path + classe database)
-        db = Chroma(persist_directory=find_chroma_path(model_name=self.config["embedding_model"],
-                                                       base_path=self.config["chroma_root_path"]),
-                    embedding_function=self.embedding_model)
-        return db
 
     def load_retriever(self):
         search_type = self.config["search_type"]
@@ -96,7 +89,7 @@ class RagChain:
         need_reload_retriever = False
 
         if old_parameters["embedding_model"] != self.config["embedding_model"]:
-            self.embedding_model = Embeddings(model_name=self.config["embedding_model"]).model
+            self.embedding_model = CustomEmbeddings(model_name=self.config["embedding_model"]).model
             need_reload_db = True
             need_reload_retriever = True
 

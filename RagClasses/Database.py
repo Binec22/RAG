@@ -9,10 +9,13 @@ from tqdm import tqdm
 from langchain.schema.document import Document
 from langchain_community.document_loaders import PyPDFDirectoryLoader, PDFPlumberLoader
 from langchain_text_splitters import RecursiveCharacterTextSplitter
+from langchain_chroma import Chroma
+
+from Embedding import CustomEmbeddings
 
 
 class Database:
-    def __init__(self, config_name=None):
+    def __init__(self, embedding = None, config=None):
         """
         Initialize the database with optional configuration
 
@@ -22,36 +25,66 @@ class Database:
         self.logger = logging.getLogger(__name__)
         logging.basicConfig(level=logging.INFO)
 
-        # Load configuration if provided
-        if config_name:
-            self.load_config(config_name)
+        # Private
+        self._data_files_path = None
+        self._embedded_database_path = None
+        self._embedding_model_name = None
 
-        # These will be set by load_config or need to be set manually
-        self.DATA_PATH = None
-        self.CHROMA_ROOT_PATH = None
-        self.EMBEDDING_MODEL = None
-        self.LLM_MODEL = None
-        self.PROMPT_TEMPLATE = None
+        # Config publique mais attributs privés pour plus de clarté à l'intérieur de la classe
+        self.config = config
+        self.load_config()
 
-    def load_config(self, config_name):
-        """
-        Load configuration parameters from config file
+        if embedding:
+            self.embedding = embedding
+        else:
+            self.embedding = CustomEmbeddings(model_name=self._embedding_model_name)
 
-        Args:
-            config_name (str): Name of configuration to load
-        """
-        from parameters import load_config as ld
-        ld(config_name, show_config=True)
-        from parameters import (
-            DATA_PATH, CHROMA_ROOT_PATH, EMBEDDING_MODEL,
-            LLM_MODEL, PROMPT_TEMPLATE
+        self.database = Chroma(
+            persist_directory=self._find_chroma_path(),
+            embedding_function=self.embedding
         )
 
-        self.DATA_PATH = DATA_PATH
-        self.CHROMA_ROOT_PATH = CHROMA_ROOT_PATH
-        self.EMBEDDING_MODEL = EMBEDDING_MODEL
-        self.LLM_MODEL = LLM_MODEL
-        self.PROMPT_TEMPLATE = PROMPT_TEMPLATE
+
+    def load_config(self):
+        """
+        Load configuration parameters from config
+        """
+        self._data_files_path = self.config["data_files_path"]
+        self._embedded_database_path = self.config["embedded_database_path"]
+        self._embedding_model_name = self.config["embedding_model"]
+
+    def add_to_chroma(self, chunks: list[Document]):
+        """
+        Add document chunks to Chroma database
+
+        Args:
+            chunks (list): Document chunks to add
+        """
+        # Calculate and add chunk IDs
+        chunks_with_ids = self._calculate_chunk_ids(chunks)
+
+        # Check for existing documents
+        existing_items = self.database.get(include=[])
+        existing_ids = set(existing_items["ids"])
+
+        print(f"Number of existing documents in DB: {len(existing_ids)}")
+
+        new_chunks = [
+            chunk for chunk in chunks_with_ids
+            if chunk.metadata["id"] not in existing_ids
+        ]
+
+        batch_size = 1000
+
+        if new_chunks:
+            with tqdm(total=len(new_chunks), desc="Adding documents") as pbar:
+                for i in range(0, len(new_chunks), batch_size):
+                    batch = new_chunks[i:i + batch_size]
+                    new_chunk_ids = [chunk.metadata["id"] for chunk in batch]
+                    self.database.add_documents(batch, ids=new_chunk_ids)
+                    pbar.update(len(batch))
+        else:
+            print("No new documents to add")
 
     def load_documents(self):
         """
@@ -68,7 +101,7 @@ class Database:
         # Load txt and docx documents
         try:
             llama_document_loader = SimpleDirectoryReader(
-                input_dir=self.DATA_PATH,
+                input_dir=self._data_files_path,
                 required_exts=[".txt", ".docx"]
             )
             for doc in tqdm(llama_document_loader.load_data(), desc="TXT/DOCX loaded"):
@@ -79,7 +112,7 @@ class Database:
             print(e)
 
         # Load PDF documents
-        pdf_loader = ProgressPyPDFDirectoryLoader(self.DATA_PATH)
+        pdf_loader = ProgressPyPDFDirectoryLoader(self._data_files_path)
         for doc in tqdm(pdf_loader.load(), desc="PDFs loaded"):
             print(doc.metadata)
             langchain_documents.append(doc)
@@ -161,48 +194,6 @@ class Database:
 
         return chunks
 
-    def add_to_chroma(self, chunks: list[Document]):
-        """
-        Add document chunks to Chroma database
-
-        Args:
-            chunks (list): Document chunks to add
-        """
-        from langchain_chroma import Chroma
-        from get_embedding_function import get_embedding_function
-
-        # Load existing database
-        db = Chroma(
-            persist_directory=self._find_chroma_path(),
-            embedding_function=get_embedding_function(self.EMBEDDING_MODEL)
-        )
-
-        # Calculate and add chunk IDs
-        chunks_with_ids = self._calculate_chunk_ids(chunks)
-
-        # Check for existing documents
-        existing_items = db.get(include=[])
-        existing_ids = set(existing_items["ids"])
-        print(f"Number of existing documents in DB: {len(existing_ids)}")
-
-        # Add only new chunks
-        new_chunks = [
-            chunk for chunk in chunks_with_ids
-            if chunk.metadata["id"] not in existing_ids
-        ]
-        batch_size = 1000
-
-        if new_chunks:
-            with tqdm(total=len(new_chunks), desc="Adding documents") as pbar:
-                for i in range(0, len(new_chunks), batch_size):
-                    batch = new_chunks[i:i + batch_size]
-                    new_chunk_ids = [chunk.metadata["id"] for chunk in batch]
-                    db.add_documents(batch, ids=new_chunk_ids)
-                    db.persist()
-                    pbar.update(len(batch))
-        else:
-            print("✅ No new documents to add")
-
     def _find_chroma_path(self):
         """
         Find or create Chroma database path for specific embedding model
@@ -210,12 +201,9 @@ class Database:
         Returns:
             str: Path to Chroma database
         """
-        if not self.EMBEDDING_MODEL:
-            raise ValueError("Embedding model not configured")
-
         model_path = os.path.join(
-            self.CHROMA_ROOT_PATH,
-            f"chroma_{self.EMBEDDING_MODEL}"
+            self._embedded_database_path,
+            f"chroma_{self._embedding_model_name}"
         )
 
         if not os.path.exists(model_path):
@@ -232,7 +220,7 @@ class Database:
         """
         if chroma_subfolder_name:
             full_path = os.path.join(
-                self.CHROMA_ROOT_PATH,
+                self._embedded_database_path,
                 chroma_subfolder_name
             )
             if os.path.exists(full_path):
@@ -243,12 +231,12 @@ class Database:
         else:
             print("\nExisting databases:\n")
             subfolders = [
-                f for f in os.listdir(self.CHROMA_ROOT_PATH)
-                if os.path.isdir(os.path.join(self.CHROMA_ROOT_PATH, f))
+                f for f in os.listdir(self._embedded_database_path)
+                if os.path.isdir(os.path.join(self._embedded_database_path, f))
             ]
 
             if not subfolders:
-                print(f"No subfolders found in {self.CHROMA_ROOT_PATH}\n")
+                print(f"No subfolders found in {self._embedded_database_path}\n")
                 return
 
             for subfolder in subfolders:
@@ -256,7 +244,7 @@ class Database:
 
             confirmation = input("Delete all databases? (yes/no): ")
             if confirmation.lower() == 'yes':
-                shutil.rmtree(self.CHROMA_ROOT_PATH)
+                shutil.rmtree(self._embedded_database_path)
                 print("All databases cleared")
             else:
                 print("Deletion cancelled.")
@@ -285,7 +273,7 @@ class Database:
         if args.clear:
             print("Clearing Database...")
             subfolder_name = (
-                f"chroma_{db.EMBEDDING_MODEL}"
+                f"chroma_{db._embedding_model_name}"
                 if args.config else None
             )
             db.clear_database(subfolder_name)
@@ -294,7 +282,7 @@ class Database:
         if args.config:
             if args.reset:
                 print("Resetting Database...")
-                subfolder_name = f"chroma_{db.EMBEDDING_MODEL}"
+                subfolder_name = f"chroma_{db._embedding_model_name}"
                 db.clear_database(subfolder_name)
 
             db.populate_database()

@@ -54,6 +54,11 @@ class TemplateApp:
             view_func=self.clear_chat_history,
             methods=['POST']
         )
+        self.app.add_url_rule(
+            '/get',
+            view_func=self.get_chat_response,
+            methods=['POST']
+        )
 
     def get_document(self, document_name):
         documents = [
@@ -81,20 +86,6 @@ class TemplateApp:
     def index():
         return render_template('local.html')
 
-    def get_Chat_response(self, query):
-        inputs = {
-            "query": str(query),
-            "chat_history": []
-        }
-        res = self.conversational_rag_chain._call(inputs)
-
-        output = jsonify({
-            'response': res['result'],
-            'context': res['context'],
-            'source': res['source']
-        })
-        return output
-
     def update_settings(self):
         data = request.get_json()
         self.config = AppConfig(data).as_dict()
@@ -104,4 +95,21 @@ class TemplateApp:
     def clear_chat_history(self):
         self.conversational_rag_chain.clear_chat_history()
         return jsonify({'status': 'success', 'message': 'Chat history cleared'}), 200
+
+    def get_chat_response(self):
+        data = request.get_json()
+        query = data.get("msg", "")
+        inputs = {
+            "query": str(query),
+            "chat_history": []
+        }
+
+        result = self.conversational_rag_chain._call(inputs)
+
+        output = jsonify({
+            'response': result['result'],
+            'context': result['context'],
+            'source': result['source']
+        })
+        return output
 
