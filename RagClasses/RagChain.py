@@ -8,7 +8,7 @@ from langchain_chroma import Chroma
 from langchain_core.prompts import ChatPromptTemplate, MessagesPlaceholder
 
 sys.path.append(os.path.abspath(os.path.join(os.path.dirname(__file__), '../python_script')))
-from Embedding import CustomEmbeddings
+from Embedding import Embeddings
 from LLM import LLM
 from Database import Database
 from AppConfig import AppConfig
@@ -17,7 +17,10 @@ from AppConfig import AppConfig
 class RagChain:
     def __init__(self, config):
         self.config = AppConfig(config=config).as_dict()
-        self.embedding_model: CustomEmbeddings = CustomEmbeddings(model_name=self.config["embedding_model"]).model
+        self.embedding_model = Embeddings(model_name=self.config["embedding_model"]).model
+        #TODO
+        print("ici c'est ragchain")
+        print(self.embedding_model.embed_query("test"))
         llm = LLM(model_name=self.config["llm_model"])
         self.llm_model = llm.model
         self.database = Database(config=self.config).database

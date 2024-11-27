@@ -16,7 +16,6 @@ class TemplateApp:
         self._setup_routes()
 
     def load_rag(self):
-        #TODO
         self.rag_chain = RagChain(config=self.config)
         self.conversational_rag_chain = ConversationalRagChain.from_llm(
             rag_chain=self.rag_chain.rag_chain,
