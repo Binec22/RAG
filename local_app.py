@@ -23,4 +23,4 @@ default_params = {
 
 if __name__ == '__main__':
     local_app = TemplateApp(__name__,default_params)
-    local_app.run(port=5000, debug=False)
+    local_app.run(port=5000 , debug=False)

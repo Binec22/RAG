@@ -5,9 +5,19 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="7c8b8920-ebb2-41a9-8f3b-1d300a7abb04" name="Changes" comment="TemplateApp class">
-      <change afterPath="$PROJECT_DIR$/python_script/processdatabase.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/python_script/un_texte.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.gitignore" beforeDir="false" afterPath="$PROJECT_DIR$/.gitignore" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_25_11_2024_21_45_[Changes]/shelved.patch" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_25_11_2024_21_45__Changes_.xml" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/RagClasses/ConversationalRagChain.py" beforeDir="false" afterPath="$PROJECT_DIR$/RagClasses/ConversationalRagChain.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/RagClasses/Database.py" beforeDir="false" afterPath="$PROJECT_DIR$/RagClasses/Database.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/RagClasses/Embedding.py" beforeDir="false" afterPath="$PROJECT_DIR$/RagClasses/Embedding.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/RagClasses/LLM.py" beforeDir="false" afterPath="$PROJECT_DIR$/RagClasses/LLM.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/RagClasses/RagChain.py" beforeDir="false" afterPath="$PROJECT_DIR$/RagClasses/RagChain.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/RagClasses/TemplateApp.py" beforeDir="false" afterPath="$PROJECT_DIR$/RagClasses/TemplateApp.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/data/test/embedded_database/chroma_voyage-3/6f99efaf-2ba2-4f7e-bc4a-3fcba45d069e/length.bin" beforeDir="false" afterPath="$PROJECT_DIR$/data/test/embedded_database/chroma_voyage-3/6f99efaf-2ba2-4f7e-bc4a-3fcba45d069e/length.bin" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/local_app.py" beforeDir="false" afterPath="$PROJECT_DIR$/local_app.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/python_script/un_texte.json" beforeDir="false" afterPath="$PROJECT_DIR$/python_script/un_texte.json" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -18,7 +28,6 @@
     <option name="RECENT_TEMPLATES">
       <list>
         <option value="Python Script" />
-        <option value="package.json" />
       </list>
     </option>
   </component>
@@ -39,7 +48,7 @@
   <component name="Git.Settings">
     <option name="RECENT_BRANCH_BY_REPOSITORY">
       <map>
-        <entry key="$PROJECT_DIR$" value="caca" />
+        <entry key="$PROJECT_DIR$" value="class_refactoring" />
       </map>
     </option>
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
@@ -92,7 +101,6 @@
       <recent name="C:\Users\Binec\PycharmProjects\RAG\python_script" />
     </key>
     <key name="MoveFile.RECENT_KEYS">
-      <recent name="C:\Users\Antonin\PycharmProjects\RAG\data" />
       <recent name="C:\Users\Binec\PycharmProjects\RAG\RagClasses" />
       <recent name="C:\Users\Binec\PycharmProjects\RAG\unitest" />
       <recent name="C:\Users\Binec\PycharmProjects\RAG" />

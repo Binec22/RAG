@@ -26,10 +26,8 @@ class LLM:
         self._hf_token = None
         self.model = None
         self._temperature = temperature
-        print("1")
         if load:
             self.load_model()
-            print("2")
 
     def __load_api_key(self):
         """Charge les clés API depuis les variables d'environnement"""

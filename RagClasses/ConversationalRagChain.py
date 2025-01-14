@@ -9,8 +9,6 @@ from pydantic import BaseModel, Field
 
 from langchain_core.runnables import RunnableBinding
 
-from parameters import REPHRASING_PROMPT, STANDALONE_PROMPT, ROUTER_DECISION_PROMPT
-
 
 class ResultYAML(BaseModel):
     result: bool
