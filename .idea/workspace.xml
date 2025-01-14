@@ -5,15 +5,8 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="7c8b8920-ebb2-41a9-8f3b-1d300a7abb04" name="Changes" comment="TemplateApp class">
-      <change beforePath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_rebase_[Changes]/shelved.patch" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_rebase__Changes_.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/RagClasses/Database.py" beforeDir="false" afterPath="$PROJECT_DIR$/RagClasses/Database.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/RagClasses/Embedding.py" beforeDir="false" afterPath="$PROJECT_DIR$/RagClasses/Embedding.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/RagClasses/LLM.py" beforeDir="false" afterPath="$PROJECT_DIR$/RagClasses/LLM.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/RagClasses/RagChain.py" beforeDir="false" afterPath="$PROJECT_DIR$/RagClasses/RagChain.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/RagClasses/TemplateApp.py" beforeDir="false" afterPath="$PROJECT_DIR$/RagClasses/TemplateApp.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/data/test/embedded_database/chroma_voyage-3/6f99efaf-2ba2-4f7e-bc4a-3fcba45d069e/length.bin" beforeDir="false" afterPath="$PROJECT_DIR$/data/test/embedded_database/chroma_voyage-3/6f99efaf-2ba2-4f7e-bc4a-3fcba45d069e/length.bin" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_25_11_2024_21_45_[Changes]/shelved.patch" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_25_11_2024_21_45__Changes_.xml" beforeDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -122,6 +115,7 @@
       <workItem from="1732006046672" duration="8293000" />
       <workItem from="1732019665840" duration="7759000" />
       <workItem from="1732042527728" duration="6841000" />
+      <workItem from="1736859261108" duration="292000" />
     </task>
     <task id="LOCAL-00001" summary="First Version">
       <option name="closed" value="true" />
