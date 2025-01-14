@@ -5,8 +5,11 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="7c8b8920-ebb2-41a9-8f3b-1d300a7abb04" name="Changes" comment="TemplateApp class">
-      <change beforePath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_25_11_2024_21_45_[Changes]/shelved.patch" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_25_11_2024_21_45__Changes_.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/RagClasses/Database.py" beforeDir="false" afterPath="$PROJECT_DIR$/RagClasses/Database.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/RagClasses/Embedding.py" beforeDir="false" afterPath="$PROJECT_DIR$/RagClasses/Embedding.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/RagClasses/RagChain.py" beforeDir="false" afterPath="$PROJECT_DIR$/RagClasses/RagChain.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/RagClasses/TemplateApp.py" beforeDir="false" afterPath="$PROJECT_DIR$/RagClasses/TemplateApp.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -66,24 +69,24 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent">{
-  &quot;keyToString&quot;: {
-    &quot;Python.local_app.executor&quot;: &quot;Run&quot;,
-    &quot;Python.local_app3.executor&quot;: &quot;Run&quot;,
-    &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
-    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
-    &quot;RunOnceActivity.git.unshallow&quot;: &quot;true&quot;,
-    &quot;git-widget-placeholder&quot;: &quot;class__refactoring&quot;,
-    &quot;last_opened_file_path&quot;: &quot;C:/Users/Binec/PycharmProjects/RAG&quot;,
-    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
-    &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
-    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
-    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
-    &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
-    &quot;settings.editor.selected.configurable&quot;: &quot;Errors&quot;,
-    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "Python.local_app.executor": "Run",
+    "Python.local_app3.executor": "Run",
+    "RunOnceActivity.OpenProjectViewOnStart": "true",
+    "RunOnceActivity.ShowReadmeOnStart": "true",
+    "RunOnceActivity.git.unshallow": "true",
+    "git-widget-placeholder": "class__refactoring__gamer",
+    "last_opened_file_path": "C:/Users/Binec/PycharmProjects/RAG",
+    "node.js.detected.package.eslint": "true",
+    "node.js.detected.package.tslint": "true",
+    "node.js.selected.package.eslint": "(autodetect)",
+    "node.js.selected.package.tslint": "(autodetect)",
+    "nodejs_package_manager_path": "npm",
+    "settings.editor.selected.configurable": "Errors",
+    "vue.rearranger.settings.migration": "true"
   }
-}</component>
+}]]></component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
       <recent name="C:\Users\Binec\PycharmProjects\RAG" />
@@ -115,7 +118,6 @@
       <workItem from="1732006046672" duration="8293000" />
       <workItem from="1732019665840" duration="7759000" />
       <workItem from="1732042527728" duration="6841000" />
-      <workItem from="1736859261108" duration="292000" />
     </task>
     <task id="LOCAL-00001" summary="First Version">
       <option name="closed" value="true" />
