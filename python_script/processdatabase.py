@@ -16,11 +16,11 @@ def reformulate_text(text):
     """
     try:
         prompt = (
-            "Reformule ce texte pour le rendre exploitable dans une base de données destinée à un système de RAG d'une école d'ingénieur. "
+            "Reformule ce texte pour le rendre exploitable dans une base de données destinée à un système de question-réponse d'une école d'ingénieur. "
             "Le texte doit :\n"
-            "1. Être concis et explicite.\n"
-            "2. Mettre en avant les informations clés et les thèmes abordés.\n"
-            "3. Être rédigé de manière à répondre potentiellement à des questions d’utilisateurs.\n\n"
+            "1. Mettre en avant les informations clés et les thèmes abordés.\n"
+            "2. Être rédigé de manière à répondre à des questions d’utilisateurs.\n"
+            "3. Être informel et ne pas contenir de liens ou de références externes.\n\n"
             f"Texte original :\n{text}\n\nTexte reformulé :"
         )
         response = model.generate([prompt])
@@ -58,7 +58,7 @@ def process_json_file(input_file, output_file):
 # Chemins des fichiers
 #input_json = "python_script/un_texte.json"
 input_json = "python_script/SeatechWebsiteScrapped.json"
-output_json = "python_script/base_de_donnees_reformulee2.json"
+output_json = "python_script/base_de_donnees_reformulee_22_01.json"
 
 # Appel de la fonction principale
 process_json_file(input_json, output_json)

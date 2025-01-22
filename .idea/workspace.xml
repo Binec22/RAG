@@ -5,13 +5,11 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="7c8b8920-ebb2-41a9-8f3b-1d300a7abb04" name="Changes" comment="Prompt engineering de la base de donnée, maintenant il faut la convertir en embedding">
+      <change afterPath="$PROJECT_DIR$/RagClasses/__init__.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/python_script/semanticSplitterTest.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/RagClasses/AppConfig.py" beforeDir="false" afterPath="$PROJECT_DIR$/RagClasses/AppConfig.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/RagClasses/Database.py" beforeDir="false" afterPath="$PROJECT_DIR$/RagClasses/Database.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/RagClasses/RagChain.py" beforeDir="false" afterPath="$PROJECT_DIR$/RagClasses/RagChain.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/local_app.py" beforeDir="false" afterPath="$PROJECT_DIR$/local_app.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/python_script/config.json" beforeDir="false" afterPath="$PROJECT_DIR$/config.json" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/python_script/processdatabase.py" beforeDir="false" afterPath="$PROJECT_DIR$/python_script/processdatabase.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/requirements.txt" beforeDir="false" afterPath="$PROJECT_DIR$/requirements.txt" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -54,12 +52,12 @@
     &quot;assignee&quot;: &quot;Binec22&quot;
   }
 }</component>
-  <component name="GithubPullRequestsUISettings">{
-  &quot;selectedUrlAndAccountId&quot;: {
-    &quot;url&quot;: &quot;https://github.com/Binec22/RAG.git&quot;,
-    &quot;accountId&quot;: &quot;cb6aa70f-8079-4569-822d-7d0900d1d9ea&quot;
+  <component name="GithubPullRequestsUISettings"><![CDATA[{
+  "selectedUrlAndAccountId": {
+    "url": "https://github.com/Binec22/RAG.git",
+    "accountId": "306938fa-22f4-44c0-a39c-f69d41e0c65d"
   }
-}</component>
+}]]></component>
   <component name="MarkdownSettingsMigration">
     <option name="stateVersion" value="1" />
   </component>
@@ -72,24 +70,24 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent"><![CDATA[{
-  "keyToString": {
-    "Python.local_app.executor": "Run",
-    "Python.local_app3.executor": "Run",
-    "RunOnceActivity.OpenProjectViewOnStart": "true",
-    "RunOnceActivity.ShowReadmeOnStart": "true",
-    "RunOnceActivity.git.unshallow": "true",
-    "git-widget-placeholder": "Proccessing-Database-Tools",
-    "last_opened_file_path": "C:/Users/Binec/PycharmProjects/RAG/data/seatech_reformule/documents",
-    "node.js.detected.package.eslint": "true",
-    "node.js.detected.package.tslint": "true",
-    "node.js.selected.package.eslint": "(autodetect)",
-    "node.js.selected.package.tslint": "(autodetect)",
-    "nodejs_package_manager_path": "npm",
-    "settings.editor.selected.configurable": "Errors",
-    "vue.rearranger.settings.migration": "true"
+  <component name="PropertiesComponent">{
+  &quot;keyToString&quot;: {
+    &quot;Python.local_app.executor&quot;: &quot;Run&quot;,
+    &quot;Python.local_app3.executor&quot;: &quot;Run&quot;,
+    &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.git.unshallow&quot;: &quot;true&quot;,
+    &quot;git-widget-placeholder&quot;: &quot;Proccessing-Database-Tools&quot;,
+    &quot;last_opened_file_path&quot;: &quot;C:/Users/Binec/PycharmProjects/RAG/data/seatech_reformule/documents&quot;,
+    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
+    &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
+    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
+    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
+    &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
+    &quot;settings.editor.selected.configurable&quot;: &quot;Errors&quot;,
+    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
   }
-}]]></component>
+}</component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
       <recent name="C:\Users\Binec\PycharmProjects\RAG\data\seatech_reformule\documents" />
