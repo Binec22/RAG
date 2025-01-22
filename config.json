@@ -1,38 +1,50 @@
 {
     "default": {
-        "data_path": "data/documents/default",
-        "chroma_root_path": "data/chroma/default",
+        "data_files_path": "data/documents/default",
+        "embedded_database_path": "data/chroma/default",
         "embedding_model": "voyage-law-2",
         "llm_model": "gpt-3.5-turbo",
         "prompt_template": "Answer the question based only on the following context:\n\n{context}\n\n---\n\nAnswer the question based on the above context: {question}"
     },
     "seus": {
-      "data_path": "data/documents/ship_data",
-      "chroma_root_path": "data/chroma/ship_chroma",
+      "data_files_path": "data/documents/ship_data",
+      "embedded_database_path": "data/chroma/ship_chroma",
       "embedding_model": "voyage-multilingual-2",
       "llm_model": "gpt-3.5-turbo",
       "prompt_template": "Answer the question based only on the following context:\n\n{context}\n\n---\n\nAnswer the question based on the above context: {question}"
     },
     "arch_en": {
-      "data_path": "data/documents/arch_data-en",
-      "chroma_root_path": "data/chroma/arch_data-en_chroma",
+      "data_files_path": "data/documents/arch_data-en",
+      "embedded_database_path": "data/chroma/arch_data-en_chroma",
       "embedding_model": "openai",
       "llm_model": "gpt-3.5-turbo",
       "prompt_template": "Answer the question based only on the following context:\n\n{context}\n\n---\n\nPlease provide your answer to the question: {question}"
     },
     "arch_ru": {
-      "data_path": "data/documents/arch_data-ru",
-      "chroma_root_path": "data/chroma/arch_data-ru_chroma",
+      "data_files_path": "data/documents/arch_data-ru",
+      "embedded_database_path": "data/chroma/arch_data-ru_chroma",
       "embedding_model": "voyage-multilingual-2",
       "llm_model": "gpt-3.5-turbo",
       "prompt_template": "Answer the question based only on the following context:\n\n{context}\n\n---\n\nPlease provide your answer to the question: {question}"
     },
     "test": {
-      "data_path": "data/test/documents",
-      "chroma_root_path": "data/test/embedded_database",
+      "data_files_path": "data/test/documents",
+      "embedded_database_path": "data/test/embedded_database",
       "embedding_model": "voyage-3",
       "llm_model": "gpt-3.5-turbo",
       "prompt_template": "Answer the question based only on the following context:\n\n{context}\n\n---\n\nPlease provide your answer to the question: {question}"
+    },
+    "seatech": {
+      "data_files_path": "C:\\Users\\Binec\\PycharmProjects\\RAG\\data\\seatech\\documents\\",
+      "embedded_database_path": "C:\\Users\\Binec\\PycharmProjects\\RAG\\data\\seatech\\embedded_database\\",
+      "embedding_model": "voyage-3",
+      "llm_model": "gpt-3.5-turbo"
+    },
+    "seatech2": {
+      "data_files_path": "C:\\Users\\Binec\\PycharmProjects\\RAG\\data\\seatech_reformule\\documents\\",
+      "embedded_database_path": "C:\\Users\\Binec\\PycharmProjects\\RAG\\data\\seatech_reformule\\embedded_database\\",
+      "embedding_model": "voyage-3",
+      "llm_model": "gpt-3.5-turbo"
     }
   }
   

@@ -19,8 +19,6 @@ class RagChain:
         self.config = AppConfig(config=config).as_dict()
         self.embedding_model = Embeddings(model_name=self.config["embedding_model"]).model
         #TODO
-        print("ici c'est ragchain")
-        print(self.embedding_model.embed_query("test"))
         llm = LLM(model_name=self.config["llm_model"])
         self.llm_model = llm.model
         self.database = Database(config=self.config).database
@@ -49,10 +47,7 @@ class RagChain:
             raise ValueError("Invalid 'search_type' setting")
 
         if self.config["isHistoryOn"]:
-            contextualize_q_system_prompt = """Given a chat history and the latest user question \
-            which might reference context in the chat history, formulate a standalone question \
-            which can be understood without the chat history. Do NOT answer the question, \
-            just reformulate it if needed and otherwise return it as is."""
+            contextualize_q_system_prompt = """Étant donné un historique de chat et la dernière question de l'utilisateur, qui pourrait faire référence à un contexte dans l'historique, reformulez la question de manière autonome, de sorte qu'elle soit compréhensible sans l'historique de chat. Ne répondez pas à la question, contentez-vous de la reformuler si nécessaire, sinon renvoyez-la telle quelle."""
 
             contextualize_q_prompt = ChatPromptTemplate.from_messages(
                 [
@@ -69,10 +64,7 @@ class RagChain:
         return retriever
 
     def load_rag_chain(self):
-        qa_system_prompt = """You are an assistant for question-answering tasks. \
-        Use the following pieces of retrieved context to answer the question. \
-        If you don't know the answer, just say that you don't know. \
-        Use three sentences maximum and keep the answer concise.\
+        qa_system_prompt = """Tu es un assistant, membre de l'école d'ingénieur Seatech, pour des tâches de question-réponse. Utilise les éléments suivants du contexte récupéré pour répondre à la question. Si tu ne connais pas la réponse, dis simplement que tu ne sais pas.
 
         {context}"""
         qa_prompt = ChatPromptTemplate.from_messages(

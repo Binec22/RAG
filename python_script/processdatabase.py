@@ -58,7 +58,7 @@ def process_json_file(input_file, output_file):
 # Chemins des fichiers
 #input_json = "python_script/un_texte.json"
 input_json = "python_script/SeatechWebsiteScrapped.json"
-output_json = "python_script/base_de_donnees_reformulee.json"
+output_json = "python_script/base_de_donnees_reformulee2.json"
 
 # Appel de la fonction principale
 process_json_file(input_json, output_json)

@@ -1,5 +1,9 @@
+import json
+import os
+
+
 class AppConfig:
-    def __init__(self, config):
+    def __init__(self, config : dict):
         self.default_params = {
             "temperature": 0,
             "search_type": "similarity",
@@ -18,6 +22,36 @@ class AppConfig:
             "llm_model": str,
         }
         self.config = self._validate_and_merge_config(config)
+
+    @classmethod
+    def from_json(cls, file_path: str = None, config_name: str = "default"):
+        """
+        Create an AppConfig object from a named configuration in a JSON file.
+
+        Args:
+            file_path (str): Path to the JSON configuration file.
+            config_name (str): Name of the specific configuration to load.
+
+        Returns:
+            AppConfig: An initialized AppConfig object.
+        """
+        if file_path is None:
+            # default config path
+            file_path = "config.json"
+            if not os.path.isfile("config.json"):
+                raise FileNotFoundError(f"Default configuration file 'config.json' not found.")
+        else:
+            if not os.path.isfile(file_path):
+                raise FileNotFoundError(f"Configuration file '{file_path}' not found.")
+
+        with open(file_path, "r") as file:
+            all_configs = json.load(file)
+
+        if config_name not in all_configs:
+            raise ValueError(f"Configuration '{config_name}' not found in the file.")
+
+        selected_config = all_configs[config_name]
+        return cls(selected_config)
 
     def _validate_and_merge_config(self, config):
         if not isinstance(config, dict):
