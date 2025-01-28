@@ -14,10 +14,10 @@ default_params = {
     "mmr_doc_nb": 5,
     "lambda_mult": 0.25,
     "isHistoryOn": True,
-    "data_files_path": "C:\\Users\\Binec\\PycharmProjects\\RAG\\data\\seatech_reformule\\documents\\",
-    "embedded_database_path": "C:\\Users\\Binec\\PycharmProjects\\RAG\\data\\seatech_reformule\\embedded_database\\",
+    "data_files_path": "C:\\Users\\Binec\\PycharmProjects\\RAG\\data\\seatech_firecrawl\\documents\\",
+    "embedded_database_path": "C:\\Users\\Binec\\PycharmProjects\\RAG\\data\\seatech_firecrawl\\embedded_database\\",
     "embedding_model": "voyage-3",
-    "llm_model": "gpt-3.5-turbo",
+    "llm_model": "gpt-4-turbo",
 }
 
 

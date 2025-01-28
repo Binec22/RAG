@@ -145,11 +145,9 @@ class Database:
 
         data_files_path = Path(self._data_files_path)
 
-        def seatech_metadata_func(record: dict, metadata: dict) -> dict:
-            metadata["url"] = record.get("metadata", {}).get("url")
-            metadata["title"] = record.get("metadata", {}).get("title")
-            metadata["author"] = record.get("metadata", {}).get("author")
-            metadata["language"] = record.get("metadata", {}).get("language")
+        def metadata_func(record: dict, metadata: dict) -> dict:
+            metadata["url"] = record.get("url")
+            metadata["key_words"] = record.get("key_words")
             return metadata
 
         json_files = list(data_files_path.glob("*.json"))
@@ -158,9 +156,11 @@ class Database:
 
         for json_file in tqdm(json_files, desc="Loading JSON documents"):
             json_loader = JSONLoader(
-                file_path=str(json_file),  # Chemin absolu vers le fichier
-                jq_schema=".[]",
-                content_key="markdown",
+                file_path=str(json_file),
+                jq_schema=".[] | .data",
+                content_key="text_content",
+                metadata_func=metadata_func,
+                text_content=False
             )
 
             # Ajouter les documents chargés à la liste

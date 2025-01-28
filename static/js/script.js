@@ -460,25 +460,27 @@ document.addEventListener("DOMContentLoaded", function() {
         const span = document.createElement('span');
         span.className = 'float-start mx-2';
 
-        const doc = await fetchDocument(source);
-        if (doc) {
-            const docIcon = createIcon(doc);
-            span.appendChild(docIcon);
-            span.appendChild(document.createTextNode(source));
-
-            const downloadButton = createLink(doc);
-            downloadButton.textContent = "";
-
-            const downloadIcon = document.createElement('img');
-            downloadIcon.classList.add('icon');
-            downloadIcon.classList.add('download-icon');
-            downloadIcon.src = `${root}/static/img/download.svg`;
-
-            downloadButton.appendChild(downloadIcon);
-            cardHeader.appendChild(downloadButton);
-        } else {
-            console.error('Document is undefined');
-        }
+        // TODO
+        span.appendChild(document.createTextNode(source));
+        // const doc = await fetchDocument(source);
+        // if (doc) {
+        //     const docIcon = createIcon(doc);
+        //     span.appendChild(docIcon);
+        //     span.appendChild(document.createTextNode(source));
+        //
+        //     const downloadButton = createLink(doc);
+        //     downloadButton.textContent = "";
+        //
+        //     const downloadIcon = document.createElement('img');
+        //     downloadIcon.classList.add('icon');
+        //     downloadIcon.classList.add('download-icon');
+        //     downloadIcon.src = `${root}/static/img/download.svg`;
+        //
+        //     downloadButton.appendChild(downloadIcon);
+        //     cardHeader.appendChild(downloadButton);
+        // } else {
+        //     console.error('Document is undefined');
+        // }
 
         const contextButton = document.createElement('button');
         contextButton.className = 'btn btn-menu text-white context';

@@ -99,7 +99,7 @@ class ConversationalRagChain(Chain):
             try:
                 sources.append(doc.metadata['file_name'])
             except:
-                sources.append(doc.metadata['source'])
+                sources.append(doc.metadata['url'])
         return answer, contexts, sources
 
     def update_chat_history(self, user_question, bot_response):
