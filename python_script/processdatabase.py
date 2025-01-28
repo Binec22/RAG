@@ -41,19 +41,15 @@ def process_json_file(input_file, output_file):
             data = json.load(file)
         counter = 0
         for entry in data:
-            if counter == 0:
-                print(entry)
-            if "data" in entry:
+            if "markdown" in entry:
                 counter += 1
-                if counter == 1:
-                    print("\n\n")
-                # print(f"Reformulation du texte {counter} : {entry['markdown'][:50]}...")  # Affiche un aperçu
-                # entry["markdown"] = reformulate_text(entry["markdown"])
+                print(f"Reformulation du texte {counter} : {entry['markdown'][:50]}...")  # Affiche un aperçu
+                entry["markdown"] = reformulate_text(entry["markdown"])
 
-        # with open(output_file, "w", encoding="utf-8") as file:
-        #     json.dump(data, file, ensure_ascii=False, indent=2)
+        with open(output_file, "w", encoding="utf-8") as file:
+            json.dump(data, file, ensure_ascii=False, indent=2)
 
-        print(f"Traitement terminé. Résultat enregistré dans {counter}")
+        print(f"Traitement terminé. Résultat enregistré dans {output_file}")
 
     except Exception as e:
         print(f"Erreur lors du traitement du fichier JSON : {e}")
@@ -61,7 +57,7 @@ def process_json_file(input_file, output_file):
 
 # Chemins des fichiers
 #input_json = "python_script/un_texte.json"
-input_json = "firecrawl_database4.json"
+input_json = "python_script/SeatechWebsiteScrapped.json"
 output_json = "python_script/base_de_donnees_reformulee2.json"
 
 # Appel de la fonction principale

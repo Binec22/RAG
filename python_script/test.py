@@ -26,6 +26,7 @@ print(docs[0])
 
 # print("Contenu :", docs[0].page_content.encode('utf-8').decode('unicode_escape'))
 print("\n\n")
+print("\n\n")
 
 print("Métadonnées :", docs[0].metadata)
 
