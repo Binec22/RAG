@@ -542,7 +542,22 @@ document.addEventListener("DOMContentLoaded", function() {
             body: JSON.stringify({ msg: userMessage })
         }).then(response => response.json())
         .then(data => {
-            chatBox.appendChild(createChatLi(data.response, "incoming"));
+           if (typeof data.response === "string" && data.response.includes("<think>") && data.response.includes("</think>")) {
+                let parts = data.response.split(/<\/?think>/);
+
+                if (parts.length >= 3) {  // Vérifie qu'on a bien une séparation correcte
+                    let formattedThink = parts[1].trim().replace(/\n/g, "<br>");
+                    let formattedMain = parts[2].trim().replace(/\n/g, "<br>");
+
+                    chatBox.appendChild(createChatLi(`<strong>Réflexion :</strong><br>${formattedThink}`, "incoming"));
+                    chatBox.appendChild(createChatLi(`<hr><strong>Réponse :</strong><br>${formattedMain}`, "incoming"));
+                } else {
+                    chatBox.appendChild(createChatLi(data.response.replace(/\n/g, "<br>"), "incoming"));
+                }
+            } else {
+                chatBox.appendChild(createChatLi(data.response.replace(/\n/g, "<br>"), "incoming"));
+            }
+            //chatBox.appendChild(createChatLi(data.response, "incoming"));
             chatBox.scrollTo(0, chatBox.scrollHeight);
 
             createSearchNumberElement();

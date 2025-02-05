@@ -1,3 +1,5 @@
+import json
+
 from flask import Flask, render_template, request, jsonify, send_from_directory
 from RagChain import RagChain
 from ConversationalRagChain import ConversationalRagChain
@@ -105,10 +107,16 @@ class TemplateApp:
 
         result = self.conversational_rag_chain._call(inputs)
 
-        output = jsonify({
+        # Construire le JSON de sortie
+        output_data = {
             'response': result['result'],
             'context': result['context'],
             'source': result['source']
-        })
-        return output
+        }
+
+        # Enregistrer dans un fichier sur le disque
+        with open("output.json", "w", encoding="utf-8") as f:
+            json.dump(output_data, f, ensure_ascii=False, indent=4)
+
+        return jsonify(output_data)
 

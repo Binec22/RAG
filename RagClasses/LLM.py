@@ -8,7 +8,9 @@ from typing import Optional
 class LLM:
     _SUPPORTED_MODELS = {
         "gpt": lambda self: self._load_openai_model(),
-        "mistral": lambda self: self._load_mistral_model()
+        "mistral": lambda self: self._load_mistral_model(),
+        "ollama-mistral": lambda self: self._load_ollama_mistral_model(),
+        "ollama-deepseek": lambda self: self._load_deepseek_mistral_model()
     }
 
     def __init__(
@@ -79,6 +81,18 @@ class LLM:
             max_new_tokens=1000,
         )
         return HuggingFacePipeline(pipeline=text_generation_pipeline)
+
+    def _load_ollama_mistral_model(self):
+        from langchain_ollama import ChatOllama
+        print("le modèle mistral s'apprête à être chargé")
+        return ChatOllama(model="mistral",
+                          temperature=self._temperature,)
+
+    def _load_deepseek_mistral_model(self):
+        from langchain_ollama import ChatOllama
+        print("le modèle deepseek s'apprête à être chargé")
+        return ChatOllama(model="deepseek-r1",
+                          temperature=self._temperature,)
 
     def load_model(self):
         """Charge le modèle en fonction de son nom"""
