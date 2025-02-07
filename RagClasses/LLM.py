@@ -8,7 +8,7 @@ from typing import Optional
 class LLM:
     _SUPPORTED_MODELS = {
         "gpt": lambda self: self._load_openai_model(),
-        "mistral": lambda self: self._load_mistral_model(),
+        #"mistral": lambda self: self._load_mistral_model(),
         "ollama-mistral": lambda self: self._load_ollama_mistral_model(),
         "ollama-deepseek": lambda self: self._load_deepseek_mistral_model()
     }

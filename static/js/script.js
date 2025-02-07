@@ -44,7 +44,7 @@ document.addEventListener("DOMContentLoaded", function() {
 
     // Initialization
     function init() {
-        initSettings('similarity', 5, 80, 5, 25, 5, 25, 'voyage-multilingual-2', 'gpt-3.5-turbo');
+        initSettings('similarity', 5, 80, 5, 25, 5, 25, 'voyage-3', 'ollama-mistral');
         clearChatHistory(onLoad = true);
         handleResponsiveClasses();
         collapseSidebarsOnLoad();
