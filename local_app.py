@@ -14,11 +14,11 @@ default_params = {
     "mmr_doc_nb": 5,
     "lambda_mult": 0.25,
     "isHistoryOn": True,
-    "data_files_path": "C:\\Users\\Binec\\PycharmProjects\\RAG\\data\\seatech_firecrawl\\documents\\",
-    #"data_files_path": "C:\\Users\\Antonin\\PycharmProjects\\RAG\\data\\seatech_firecrawl\\documents\\",
-    "embedded_database_path": "C:\\Users\\Binec\\PycharmProjects\\RAG\\data\\seatech_firecrawl\\embedded_database\\",
-    #"embedded_database_path": "C:\\Users\\Antonin\\PycharmProjects\\RAG\\data\\seatech_firecrawl\\embedded_database\\",
-    "embedding_model": "voyage-3",
+    # "data_files_path": "C:\\Users\\Binec\\PycharmProjects\\RAG\\data\\seatech_firecrawl\\documents\\",
+    # "embedded_database_path": "C:\\Users\\Binec\\PycharmProjects\\RAG\\data\\seatech_firecrawl\\embedded_database\\",
+    "data_files_path": "C:\\Users\\Antonin\\PycharmProjects\\RAG\\data\\seatech_firecrawl\\documents\\",
+    "embedded_database_path": "C:\\Users\\Antonin\\PycharmProjects\\RAG\\data\\seatech_firecrawl\\embedded_database\\",
+    "embedding_model": "nomic-embed-text",
     "llm_model": "ollama-mistral",
 }
 

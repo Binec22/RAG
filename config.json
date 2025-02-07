@@ -47,9 +47,9 @@
       "llm_model": "gpt-3.5-turbo"
     },
   "seatech_firecrawl": {
-      "data_files_path": "C:\\Users\\Binec\\PycharmProjects\\RAG\\data\\seatech_firecrawl\\documents\\",
-      "embedded_database_path": "C:\\Users\\Binec\\PycharmProjects\\RAG\\data\\seatech_firecrawl\\embedded_database\\",
-      "embedding_model": "voyage-3",
+      "data_files_path": "C:\\Users\\Antonin\\PycharmProjects\\RAG\\data\\seatech_firecrawl\\documents\\",
+      "embedded_database_path": "C:\\Users\\Antonin\\PycharmProjects\\RAG\\data\\seatech_firecrawl\\embedded_database\\",
+      "embedding_model": "nomic-embed-text",
       "llm_model": "gpt-3.5-turbo"
     }
   }

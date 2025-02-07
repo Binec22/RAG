@@ -5,6 +5,7 @@ from dotenv import load_dotenv
 from langchain_voyageai import VoyageAIEmbeddings
 from langchain_openai import OpenAIEmbeddings
 from langchain_community.embeddings import HuggingFaceEmbeddings
+from langchain_ollama import OllamaEmbeddings
 
 
 class Embeddings:
@@ -54,7 +55,8 @@ class Embeddings:
             "openai": OpenAIEmbeddings,
             "voyage-3": lambda: VoyageAIEmbeddings(model="voyage-3"),
             "voyage-law-2": lambda: VoyageAIEmbeddings(model="voyage-law-2"),
-            "voyage-multilingual-2": lambda: VoyageAIEmbeddings(model="voyage-multilingual-2")
+            "voyage-multilingual-2": lambda: VoyageAIEmbeddings(model="voyage-multilingual-2"),
+            "nomic-embed-text": lambda: OllamaEmbeddings(model="nomic-embed-text")
         }
 
         if model_name not in embeddings_map:
