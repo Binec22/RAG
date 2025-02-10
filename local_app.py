@@ -19,7 +19,7 @@ default_params = {
     "data_files_path": "C:\\Users\\Antonin\\PycharmProjects\\RAG\\data\\seatech_firecrawl\\documents\\",
     "embedded_database_path": "C:\\Users\\Antonin\\PycharmProjects\\RAG\\data\\seatech_firecrawl\\embedded_database\\",
     "embedding_model": "nomic-embed-text",
-    "llm_model": "ollama-mistral",
+    "llm_model": "groq-mistral",
 }
 
 
