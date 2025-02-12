@@ -11,8 +11,8 @@ from langchain_community.document_loaders import PyPDFDirectoryLoader, PDFPlumbe
 from langchain_text_splitters import RecursiveCharacterTextSplitter
 from langchain_chroma import Chroma
 
-from Embedding import Embeddings
-from AppConfig import AppConfig
+from app.RagClasses.CustomEmbeddings import CustomEmbeddings
+from app.RagClasses import AppConfig
 
 
 class Database:
@@ -38,7 +38,7 @@ class Database:
         if embedding is not None:
             self.embedding = embedding
         else:
-            self.embedding = Embeddings(model_name=self._embedding_model_name).model
+            self.embedding = CustomEmbeddings(model_name=self._embedding_model_name).model
 
         self.database = Chroma(
             persist_directory=self._find_chroma_path(),

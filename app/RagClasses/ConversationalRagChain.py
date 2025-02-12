@@ -1,8 +1,6 @@
-from langchain.chains import LLMChain
 from langchain.chains.base import Chain
 from langchain.output_parsers import YamlOutputParser
-from langchain_core.messages import HumanMessage
-from typing import List, Dict, Any, Optional, ClassVar
+from typing import List, Dict, Any, Optional
 from langchain.callbacks.manager import CallbackManagerForChainRun, Callbacks
 from langchain.llms.base import BaseLanguageModel
 from pydantic import BaseModel, Field
@@ -15,7 +13,7 @@ class ResultYAML(BaseModel):
 
 
 class ConversationalRagChain(Chain):
-    """Chain that encpsulate RAG application enablingnatural conversations"""
+    """Chain that encpsulate RAG application enabling natural conversations"""
     rag_chain: RunnableBinding
     yaml_output_parser: YamlOutputParser
     llm: BaseLanguageModel
@@ -29,22 +27,18 @@ class ConversationalRagChain(Chain):
     chat_history: List[Dict[str, str]] = Field(default_factory=list)
 
     def __init__(self, **data):
+        """Initialize the ConversationalRagChain with provided data."""
         super().__init__(**data)
 
     @property
     def input_keys(self) -> List[str]:
-        """Input keys."""
+        """List of input keys expected by the chain."""
         return [self.input_key]
 
     @property
     def output_keys(self) -> List[str]:
-        """Output keys."""
+        """List of output keys produced by the chain."""
         return [self.output_key, self.context_key, self.source_key]
-
-    @property
-    def _chain_type(self) -> str:
-        """Return the chain type."""
-        return "ConversationalRagChain"
 
     @classmethod
     def from_llm(
@@ -54,8 +48,7 @@ class ConversationalRagChain(Chain):
             callbacks: Callbacks = None,
             **kwargs: Any,
     ) -> 'ConversationalRagChain':
-        """Initialize from LLM."""
-
+        """Initialize the chain from a language model."""
         return cls(
             llm=llm,
             rag_chain=rag_chain,
@@ -75,10 +68,16 @@ class ConversationalRagChain(Chain):
         return response
 
     @staticmethod
-    def format_outputs(output: Dict[str, Any]):
-        """Removes the prompt from the generated response
-        Regroups the contexts and sources of different documents in dedicated lists."""
+    def format_outputs(output: Dict[str, Any]) -> tuple:
+        """
+        Remove the prompt from the generated response and regroup contexts and sources.
 
+        Args:
+            output (Dict[str, Any]): The output dictionary containing answer and context.
+
+        Returns:
+            tuple: A tuple containing the formatted answer, contexts, and sources.
+        """
         answer = output["answer"]
         AI_marker = "Assistant: "
         marker_index = answer.find(AI_marker)
@@ -103,16 +102,25 @@ class ConversationalRagChain(Chain):
         return answer, contexts, sources
 
     def update_chat_history(self, user_question, bot_response):
-        """Update the chat history"""
+        """Update the chat history with the latest interaction."""
         self.chat_history.append({"role": "user", "content": user_question})
         self.chat_history.append({"role": "ai", "content": bot_response})
 
     def clear_chat_history(self):
-        """Clear chat history"""
+        """Clear the chat history"""
         self.chat_history = []
 
     def _call(self, inputs: Dict[str, Any], run_manager: Optional[CallbackManagerForChainRun] = None) -> Dict[str, Any]:
-        """Call the chain. Return a dict with answer, context and source"""
+        """
+        Call the chain to process inputs and return a dictionary with answer, context, and source.
+
+        Args:
+            inputs (Dict[str, Any]): Inputs to the chain, expected to contain the query.
+            run_manager (Optional[CallbackManagerForChainRun]): Manager for callbacks.
+
+        Returns:
+            Dict[str, Any]: Dictionary containing the answer, context, and source.
+        """
         chat_history = self.chat_history
         question = inputs[self.input_key]
 

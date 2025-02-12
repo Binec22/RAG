@@ -1,14 +1,22 @@
 import json
+import os
 
 from flask import Flask, render_template, request, jsonify, send_from_directory
-from RagChain import RagChain
-from ConversationalRagChain import ConversationalRagChain
-from AppConfig import AppConfig
-import os
+
+from app.RagClasses import RagChain
+from app.RagClasses import ConversationalRagChain
+from app.RagClasses import AppConfig
+
+TEMPLATE_PATH = '/local.html'
 
 class TemplateApp:
     def __init__(self, name, config=None):
-        self.app = Flask(name)
+        # Construire les chemins absolus pour les répertoires templates et static
+        base_dir = os.path.abspath(os.path.join(os.path.dirname(__file__), '..'))
+        template_folder = os.path.join(base_dir, 'templates')
+        static_folder = os.path.join(base_dir, 'static')
+
+        self.app = Flask(name, template_folder=template_folder, static_folder=static_folder)
         self.config = AppConfig(config=config, onLoad=True)
         self.config_dict = self.config.as_dict()
         self.data_path = self.config_dict.get("data_files_path")
@@ -86,7 +94,7 @@ class TemplateApp:
 
     @staticmethod
     def index():
-        return render_template('local.html')
+        return render_template(TEMPLATE_PATH)
 
     def update_settings(self):
         data = request.get_json()
@@ -100,13 +108,16 @@ class TemplateApp:
         return jsonify({'status': 'success', 'message': 'Chat history cleared'}), 200
 
     def get_chat_response(self):
+        # Récupère la requête depuis le site
         data = request.get_json()
+        # Parse le json pour récupérer uniquement la question
         query = data.get("msg", "")
         inputs = {
             "query": str(query),
             "chat_history": []
         }
 
+        # Appelle la chaine de RAG pour obtenir la réponse à la question
         result = self.conversational_rag_chain._call(inputs)
 
         # Construire le JSON de sortie
@@ -115,10 +126,5 @@ class TemplateApp:
             'context': result['context'],
             'source': result['source']
         }
-
-        # Enregistrer dans un fichier sur le disque
-        with open("output.json", "w", encoding="utf-8") as f:
-            json.dump(output_data, f, ensure_ascii=False, indent=4)
-
         return jsonify(output_data)
 
