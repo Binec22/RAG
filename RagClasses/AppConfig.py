@@ -1,5 +1,9 @@
+import json
+import os
+
+
 class AppConfig:
-    def __init__(self, config):
+    def __init__(self, config : dict, onLoad = False):
         self.default_params = {
             "temperature": 0,
             "search_type": "similarity",
@@ -17,16 +21,60 @@ class AppConfig:
             "embedding_model": str,
             "llm_model": str,
         }
-        self.config = self._validate_and_merge_config(config)
+        self.config = self._validate_and_merge_config(config, onLoad)
 
-    def _validate_and_merge_config(self, config):
+    @classmethod
+    def from_json(cls, file_path: str = None, config_name: str = "default"):
+        """
+        Create an AppConfig object from a named configuration in a JSON file.
+
+        Args:
+            file_path (str): Path to the JSON configuration file.
+            config_name (str): Name of the specific configuration to load.
+
+        Returns:
+            AppConfig: An initialized AppConfig object.
+        """
+        if file_path is None:
+            # default config path
+            file_path = "config.json"
+            if not os.path.isfile("config.json"):
+                raise FileNotFoundError(f"Default configuration file 'config.json' not found.")
+        else:
+            if not os.path.isfile(file_path):
+                raise FileNotFoundError(f"Configuration file '{file_path}' not found.")
+
+        with open(file_path, "r") as file:
+            all_configs = json.load(file)
+
+        if config_name not in all_configs:
+            raise ValueError(f"Configuration '{config_name}' not found in the file.")
+
+        selected_config = all_configs[config_name]
+        return cls(selected_config)
+
+    def update_settings(self, config):
+        if not isinstance(config, dict):
+            raise ValueError("Configuration update must be a dictionary.")
+
+        for key, value in config.items():
+            if key in self.needed_params and not isinstance(value, self.needed_params[key]):
+                raise TypeError(
+                    f'Key "{key}" must be of type {self.needed_params[key].__name__}, '
+                    f'but got {type(value).__name__}.'
+                )
+
+        self.config.update(config)
+
+    def _validate_and_merge_config(self, config, onLoad : bool):
         if not isinstance(config, dict):
             raise ValueError("A valid configuration dictionary is required.")
 
         # Vérification des clés nécessaires
-        missing_keys = [key for key in self.needed_params if key not in config]
-        if missing_keys:
-            raise ValueError(f"Missing configuration keys: {', '.join(missing_keys)}")
+        if onLoad:
+            missing_keys = [key for key in self.needed_params if key not in config]
+            if missing_keys:
+                raise ValueError(f"Missing configuration keys: {', '.join(missing_keys)}")
 
         # Vérification des types
         for key, expected_type in self.needed_params.items():

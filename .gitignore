@@ -1,2 +1,8 @@
 .cache/
 .venv/
+.idea/
+workspace.xml
+/.env
+/python_script/
+/data/seatech_reformule/
+/data/seatech/

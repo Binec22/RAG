@@ -9,8 +9,6 @@ from pydantic import BaseModel, Field
 
 from langchain_core.runnables import RunnableBinding
 
-from parameters import REPHRASING_PROMPT, STANDALONE_PROMPT, ROUTER_DECISION_PROMPT
-
 
 class ResultYAML(BaseModel):
     result: bool
@@ -101,7 +99,7 @@ class ConversationalRagChain(Chain):
             try:
                 sources.append(doc.metadata['file_name'])
             except:
-                sources.append(doc.metadata['source'])
+                sources.append(doc.metadata['url'])
         return answer, contexts, sources
 
     def update_chat_history(self, user_question, bot_response):

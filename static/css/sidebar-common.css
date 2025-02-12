@@ -3,7 +3,7 @@
 .sidebar-right {
   width: 100%;
   min-height: 100vh;
-  background-color: #455dc7;
+  background-color: var(--primary-color);
   position: absolute;
   top: 0;
   bottom: 0;
@@ -70,7 +70,7 @@
 .sidebar-right .nav-link:hover,
 .sidebar-left .nav-link.active,
 .sidebar-right .nav-link.active {
-  background-color: #5b72d6;
+  background-color: var(--primary-color-light);
   border-radius: 1rem;
 }
 
@@ -95,7 +95,7 @@
   top: unset !important;
   left: unset !important;
   min-width: unset !important;
-  background-color: #3a51b5;
+  background-color: var(--primary-color);
   border-radius: 0 !important;
 }
 
@@ -111,7 +111,7 @@
 .sidebar-right .dropdown-item:active,
 .sidebar-left .dropdown-item:focus,
 .sidebar-right .dropdown-item:focus {
-  background-color: #6177d9;
+  background-color: var(--primary-color-light);
 }
 
 .sidebar-left .nav-link,
