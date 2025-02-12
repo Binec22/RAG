@@ -124,3 +124,7 @@
   align-self: flex-end;
   background-color: var(--light-grey);
 }
+
+.seatech-logo{
+  width: 100px;
+}

@@ -44,7 +44,7 @@ document.addEventListener("DOMContentLoaded", function() {
 
     // Initialization
     function init() {
-        initSettings('similarity', 5, 80, 5, 25, 5, 25, 'voyage-multilingual-2', 'gpt-3.5-turbo');
+        initSettings('similarity', 5, 80, 5, 25, 5, 25, 'voyage-3', 'ollama-mistral');
         clearChatHistory(onLoad = true);
         handleResponsiveClasses();
         collapseSidebarsOnLoad();
@@ -460,25 +460,27 @@ document.addEventListener("DOMContentLoaded", function() {
         const span = document.createElement('span');
         span.className = 'float-start mx-2';
 
-        const doc = await fetchDocument(source);
-        if (doc) {
-            const docIcon = createIcon(doc);
-            span.appendChild(docIcon);
-            span.appendChild(document.createTextNode(source));
-
-            const downloadButton = createLink(doc);
-            downloadButton.textContent = "";
-
-            const downloadIcon = document.createElement('img');
-            downloadIcon.classList.add('icon');
-            downloadIcon.classList.add('download-icon');
-            downloadIcon.src = `${root}/static/img/download.svg`;
-
-            downloadButton.appendChild(downloadIcon);
-            cardHeader.appendChild(downloadButton);
-        } else {
-            console.error('Document is undefined');
-        }
+        // TODO
+        span.appendChild(document.createTextNode(source));
+        // const doc = await fetchDocument(source);
+        // if (doc) {
+        //     const docIcon = createIcon(doc);
+        //     span.appendChild(docIcon);
+        //     span.appendChild(document.createTextNode(source));
+        //
+        //     const downloadButton = createLink(doc);
+        //     downloadButton.textContent = "";
+        //
+        //     const downloadIcon = document.createElement('img');
+        //     downloadIcon.classList.add('icon');
+        //     downloadIcon.classList.add('download-icon');
+        //     downloadIcon.src = `${root}/static/img/download.svg`;
+        //
+        //     downloadButton.appendChild(downloadIcon);
+        //     cardHeader.appendChild(downloadButton);
+        // } else {
+        //     console.error('Document is undefined');
+        // }
 
         const contextButton = document.createElement('button');
         contextButton.className = 'btn btn-menu text-white context';
@@ -540,7 +542,22 @@ document.addEventListener("DOMContentLoaded", function() {
             body: JSON.stringify({ msg: userMessage })
         }).then(response => response.json())
         .then(data => {
-            chatBox.appendChild(createChatLi(data.response, "incoming"));
+           if (typeof data.response === "string" && data.response.includes("<think>") && data.response.includes("</think>")) {
+                let parts = data.response.split(/<\/?think>/);
+
+                if (parts.length >= 3) {  // Vérifie qu'on a bien une séparation correcte
+                    let formattedThink = parts[1].trim().replace(/\n/g, "<br>");
+                    let formattedMain = parts[2].trim().replace(/\n/g, "<br>");
+
+                    chatBox.appendChild(createChatLi(`<strong>Réflexion :</strong><br>${formattedThink}`, "incoming"));
+                    chatBox.appendChild(createChatLi(`<hr><strong>Réponse :</strong><br>${formattedMain}`, "incoming"));
+                } else {
+                    chatBox.appendChild(createChatLi(data.response.replace(/\n/g, "<br>"), "incoming"));
+                }
+            } else {
+                chatBox.appendChild(createChatLi(data.response.replace(/\n/g, "<br>"), "incoming"));
+            }
+            //chatBox.appendChild(createChatLi(data.response, "incoming"));
             chatBox.scrollTo(0, chatBox.scrollHeight);
 
             createSearchNumberElement();

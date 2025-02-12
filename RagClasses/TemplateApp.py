@@ -1,3 +1,5 @@
+import json
+
 from flask import Flask, render_template, request, jsonify, send_from_directory
 from RagChain import RagChain
 from ConversationalRagChain import ConversationalRagChain
@@ -7,8 +9,9 @@ import os
 class TemplateApp:
     def __init__(self, name, config=None):
         self.app = Flask(name)
-        self.config = AppConfig(config=config).as_dict()
-        self.data_path = self.config.get("data_files_path")
+        self.config = AppConfig(config=config, onLoad=True)
+        self.config_dict = self.config.as_dict()
+        self.data_path = self.config_dict.get("data_files_path")
         self._data_files = os.listdir(self.data_path)
         self.rag_chain = None
         self.conversational_rag_chain = None
@@ -16,8 +19,7 @@ class TemplateApp:
         self._setup_routes()
 
     def load_rag(self):
-        #TODO
-        self.rag_chain = RagChain(config=self.config)
+        self.rag_chain = RagChain(config=self.config_dict)
         self.conversational_rag_chain = ConversationalRagChain.from_llm(
             rag_chain=self.rag_chain.rag_chain,
             llm=self.rag_chain.llm_model,
@@ -88,7 +90,8 @@ class TemplateApp:
 
     def update_settings(self):
         data = request.get_json()
-        self.config = AppConfig(data).as_dict()
+        self.config.update_settings(data)
+        self.config_dict = self.config.as_dict()
         self.load_rag()
         return jsonify({'status': 'success', 'message': 'Settings updated successfully'}), 200
 
@@ -106,10 +109,16 @@ class TemplateApp:
 
         result = self.conversational_rag_chain._call(inputs)
 
-        output = jsonify({
+        # Construire le JSON de sortie
+        output_data = {
             'response': result['result'],
             'context': result['context'],
             'source': result['source']
-        })
-        return output
+        }
+
+        # Enregistrer dans un fichier sur le disque
+        with open("output.json", "w", encoding="utf-8") as f:
+            json.dump(output_data, f, ensure_ascii=False, indent=4)
+
+        return jsonify(output_data)
 

@@ -1,5 +1,7 @@
 import os
 from dotenv import load_dotenv
+from langchain_community.callbacks.manager import openai_callback_var
+from nltk.chat.iesha import reflections
 from transformers import AutoModelForCausalLM, AutoTokenizer, pipeline
 from langchain_huggingface import HuggingFacePipeline
 from typing import Optional
@@ -8,7 +10,11 @@ from typing import Optional
 class LLM:
     _SUPPORTED_MODELS = {
         "gpt": lambda self: self._load_openai_model(),
-        "mistral": lambda self: self._load_mistral_model()
+        "hugging-face-mistral": lambda self: self._load_mistral_model(),
+        "ollama-mistral": lambda self: self._load_ollama_mistral_model(),
+        "ollama-deepseek": lambda self: self._load_ollama_deepseek_model(),
+        "groq-mistral": lambda self: self._load_groq_mistral_model(),
+        "groq-deepseek": lambda self: self._load_groq_deepseek_model(),
     }
 
     def __init__(
@@ -26,28 +32,33 @@ class LLM:
         self._hf_token = None
         self.model = None
         self._temperature = temperature
-        print("1")
         if load:
             self.load_model()
-            print("2")
 
     def __load_api_key(self):
         """Charge les clés API depuis les variables d'environnement"""
         load_dotenv()
 
         if "openai" in self.model_name.lower():
-            api_key = os.getenv("OPENAI_API_KEY")
-            print(api_key)
-            if not api_key:
+            openai_api_key = os.getenv("OPENAI_API_KEY")
+            print(openai_api_key)
+            if not openai_api_key:
                 raise APIKeyMissingError(self.model_name)
-            os.environ["OPENAI_API_KEY"] = api_key
+            os.environ["OPENAI_API_KEY"] = openai_api_key
 
-        elif "mistralai" in self.model_name.lower():
-            hf_token = os.getenv("HF_API_TOKEN")
-            if not hf_token:
+        elif "hugging-face" in self.model_name.lower():
+            hf_api_key = os.getenv("HF_API_TOKEN")
+            if not hf_api_key:
                 raise APIKeyMissingError(self.model_name)
-            self._hf_token = hf_token
-            os.environ["HF_API_TOKEN"] = hf_token
+            self._hf_token = hf_api_key
+            os.environ["HF_API_TOKEN"] = hf_api_key
+
+        elif "groq" in self.model_name.lower():
+            groq_api_key = os.getenv("GROQ_API_KEY")
+            if not groq_api_key:
+                raise APIKeyMissingError(self.model_name)
+            self._groq_api_key = groq_api_key
+            os.environ["GROQ_API_KEY"] = groq_api_key
 
     def _load_openai_model(self):
         """Charge un modèle OpenAI"""
@@ -81,6 +92,31 @@ class LLM:
             max_new_tokens=1000,
         )
         return HuggingFacePipeline(pipeline=text_generation_pipeline)
+
+    def _load_ollama_mistral_model(self):
+        from langchain_ollama import ChatOllama
+        print("le modèle Mistral 7B s'apprête à être chargé avec Ollama")
+        return ChatOllama(model="mistral",
+                          temperature=self._temperature,)
+
+    def _load_ollama_deepseek_model(self):
+        from langchain_ollama import ChatOllama
+        print("le modèle DeepSeek s'apprête à être chargé avec Ollama")
+        return ChatOllama(model="deepseek-r1",
+                          temperature=self._temperature,)
+
+    def _load_groq_mistral_model(self):
+        from langchain_groq import ChatGroq
+        print("le modèle Mistral 8x7b s'apprête à être chargé avec l'API Groq")
+        return ChatGroq(model_name="mixtral-8x7b-32768",
+                        temperature=self._temperature,)
+
+    def _load_groq_deepseek_model(self):
+        from langchain_groq import ChatGroq
+        print("le modèle DeepSeek s'apprête à être chargé avec l'API Groq")
+        return ChatGroq(model_name="deepseek-r1-distill-llama-70b-specdec",
+                        temperature=self._temperature,)
+
 
     def load_model(self):
         """Charge le modèle en fonction de son nom"""

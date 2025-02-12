@@ -1,2 +1,5 @@
 .cache/
 .venv/
+.idea/
+workspace.xml
+/.env

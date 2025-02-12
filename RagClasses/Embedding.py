@@ -5,17 +5,15 @@ from dotenv import load_dotenv
 from langchain_voyageai import VoyageAIEmbeddings
 from langchain_openai import OpenAIEmbeddings
 from langchain_community.embeddings import HuggingFaceEmbeddings
+from langchain_ollama import OllamaEmbeddings
 
 
-class CustomEmbeddings:
-    def __init__(self, model_name="voyage-3", load=True):
+class Embeddings:
+    def __init__(self, model_name="voyage-3"):
         """Initialise l'objet Embeddings avec un nom de modèle par défaut et charge la clé API spécifique si
         nécessaire."""
         self._model_name = model_name
-        if load:
-            self.model = self.load_model()
-        else:
-            self.model = None
+        self.model = self.load_model()
 
     @property
     def model_name(self):
@@ -57,7 +55,8 @@ class CustomEmbeddings:
             "openai": OpenAIEmbeddings,
             "voyage-3": lambda: VoyageAIEmbeddings(model="voyage-3"),
             "voyage-law-2": lambda: VoyageAIEmbeddings(model="voyage-law-2"),
-            "voyage-multilingual-2": lambda: VoyageAIEmbeddings(model="voyage-multilingual-2")
+            "voyage-multilingual-2": lambda: VoyageAIEmbeddings(model="voyage-multilingual-2"),
+            "nomic-embed-text": lambda: OllamaEmbeddings(model="nomic-embed-text")
         }
 
         if model_name not in embeddings_map:

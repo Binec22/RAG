@@ -11,7 +11,8 @@ from langchain_community.document_loaders import PyPDFDirectoryLoader, PDFPlumbe
 from langchain_text_splitters import RecursiveCharacterTextSplitter
 from langchain_chroma import Chroma
 
-from Embedding import CustomEmbeddings
+from Embedding import Embeddings
+from AppConfig import AppConfig
 
 
 class Database:
@@ -34,10 +35,10 @@ class Database:
         self.config = config
         self.load_config()
 
-        if embedding:
+        if embedding is not None:
             self.embedding = embedding
         else:
-            self.embedding = CustomEmbeddings(model_name=self._embedding_model_name)
+            self.embedding = Embeddings(model_name=self._embedding_model_name).model
 
         self.database = Chroma(
             persist_directory=self._find_chroma_path(),
@@ -67,7 +68,7 @@ class Database:
         existing_items = self.database.get(include=[])
         existing_ids = set(existing_items["ids"])
 
-        print(f"Number of existing documents in DB: {len(existing_ids)}")
+        print(f"Number of existing documents in Database: {len(existing_ids)}")
 
         new_chunks = [
             chunk for chunk in chunks_with_ids
@@ -86,48 +87,108 @@ class Database:
         else:
             print("No new documents to add")
 
-    def load_documents(self):
+    def detect_file_types(self) -> List[str]:
         """
-        Load documents from various file types
+        Detect unique file types in the data directory.
 
         Returns:
-            List[Document]: Loaded documents
+            List[str]: List of unique file extensions found.
+        """
+        file_types = set()
+        print(self._data_files_path)
+        for root, _, files in os.walk(self._data_files_path):
+            for file in files:
+                print(file)
+                file_types.add(os.path.splitext(file)[1].lower())
+        return list(file_types)
+
+    def load_txt_docx_documents(self) -> List[Document]:
+        """
+        Load TXT and DOCX documents using SimpleDirectoryReader.
+
+        Returns:
+            List[Document]: Loaded TXT and DOCX documents.
         """
         from llama_index.core import SimpleDirectoryReader
 
-        langchain_documents = []
-        llama_documents = []
-
-        # Load txt and docx documents
-        try:
-            llama_document_loader = SimpleDirectoryReader(
-                input_dir=self._data_files_path,
-                required_exts=[".txt", ".docx"]
-            )
-            for doc in tqdm(llama_document_loader.load_data(), desc="TXT/DOCX loaded"):
-                doc.metadata.pop('file_path', None)
-                print(doc.metadata)
-                llama_documents.append(doc)
-        except ValueError as e:
-            print(e)
-
-        # Load PDF documents
-        pdf_loader = ProgressPyPDFDirectoryLoader(self._data_files_path)
-        for doc in tqdm(pdf_loader.load(), desc="PDFs loaded"):
-            print(doc.metadata)
-            langchain_documents.append(doc)
-
-        # Convert and combine documents
-        documents = (
-                langchain_documents +
-                self._convert_llamaindexdoc_to_langchaindoc(llama_documents)
+        documents = []
+        llama_document_loader = SimpleDirectoryReader(
+            input_dir=self._data_files_path,
+            required_exts=[".txt", ".docx"]
         )
+        for doc in tqdm(llama_document_loader.load_data(), desc="Loading .txt and .docx documents"):
+            doc.metadata.pop('file_path', None)
+            documents.append(doc)
+        return documents
 
-        print(f"Loaded {len(langchain_documents)} chunks from PDF documents, "
-              f"{len(llama_documents)} chunks from TXT/DOCX documents.\n"
-              f"Total chunks: {len(documents)}.\n")
+    def load_pdf_documents(self) -> List[Document]:
+        """
+        Load PDF documents using ProgressPyPDFDirectoryLoader.
+
+        Returns:
+            List[Document]: Loaded PDF documents.
+        """
+        pdf_loader = ProgressPyPDFDirectoryLoader(self._data_files_path)
+        documents = []
+        for doc in tqdm(pdf_loader.load(), desc="Loading .pdf documents"):
+            documents.append(doc)
+        return documents
+
+    def load_json_documents(self) -> List[Document]:
+        """
+        Load .json documents using JSONLoader.
+
+        Returns:
+            List[Document]: Loaded PDF documents.
+        """
+        from langchain_community.document_loaders import JSONLoader
+
+        data_files_path = Path(self._data_files_path)
+
+        def metadata_func(record: dict, metadata: dict) -> dict:
+            metadata["url"] = record.get("url")
+            metadata["key_words"] = record.get("key_words")
+            return metadata
+
+        json_files = list(data_files_path.glob("*.json"))
+
+        documents = []
+
+        for json_file in tqdm(json_files, desc="Loading JSON documents"):
+            json_loader = JSONLoader(
+                file_path=str(json_file),
+                jq_schema=".[] | .data",
+                content_key="text_content",
+                metadata_func=metadata_func,
+                text_content=False
+            )
+
+            # Ajouter les documents chargés à la liste
+            documents.extend(json_loader.load())
 
         return documents
+
+    def load_documents(self) -> List[Document]:
+        """
+        Load documents from various file types and combine them.
+
+        Returns:
+            List[Document]: Combined list of all loaded documents.
+        """
+        file_types = self.detect_file_types()
+        all_documents = []
+
+        if ".txt" in file_types or ".docx" in file_types:
+            all_documents.extend(self.load_txt_docx_documents())
+
+        if ".pdf" in file_types:
+            all_documents.extend(self.load_pdf_documents())
+
+        if ".json" in file_types:
+            all_documents.extend(self.load_json_documents())
+
+        print(f"Loaded {len(all_documents)} documents from {len(file_types)} file types.")
+        return all_documents
 
     @staticmethod
     def _convert_llamaindexdoc_to_langchaindoc(documents: list):
@@ -268,7 +329,9 @@ class Database:
         parser.add_argument("--clear", action="store_true", help="Clear database")
 
         args = parser.parse_args()
-        db = cls(args.config)
+        config = AppConfig.from_json(config_name=args.config).as_dict()
+        print(config)
+        db = cls(config=config)
 
         if args.clear:
             print("Clearing Database...")

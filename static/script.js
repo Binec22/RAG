@@ -65,7 +65,9 @@ toggleRight.addEventListener("click", () => {
 const createChatLi = (message, className) => {
     const chatLi = document.createElement("li");
     chatLi.classList.add("chat", className);
-    let chatContent = className === "incoming" ? `<span class="material-symbols-outlined"><i class='bx bxs-message-dots'></i></span><p>${message}</p>` : `<p>${message}</p>`;
+    let chatContent = className === "incoming"
+        ? `<span class="material-symbols-outlined"><i class='bx bxs-message-dots'></i></span><p>${message}</p>`
+        : `<p>${message}</p>`;
     chatLi.innerHTML = chatContent;
     return chatLi;
 };
@@ -105,9 +107,21 @@ $(document).ready(function() {
             type: "POST",
             url: "/get",
         }).done(function(data) {
-            //var botHtml = '<div class="d-flex justify-content-start mb-4"><div class="img_cont_msg"><img src="https://i.ibb.co/fSNP7Rz/icons8-chatgpt-512.png" class="rounded-circle user_img_msg"></div><div class="msg_cotainer">' + data + '<span class="msg_time">' + str_time + '</span></div></div>';
-            //$("#messageFormeight").append($.parseHTML(botHtml));
-            chatBox.appendChild(createChatLi(data.response, "incoming"));
+           if (typeof data.response === "string" && data.response.includes("<think>") && data.response.includes("</think>")) {
+                let parts = data.response.split(/<\/?think>/);
+
+                if (parts.length >= 3) {  // Vérifie qu'on a bien une séparation correcte
+                    let formattedThink = parts[1].trim().replace(/\n/g, "<br>");
+                    let formattedMain = parts[2].trim().replace(/\n/g, "<br>");
+
+                    chatBox.appendChild(createChatLi(`<strong>Réflexion :</strong><br>${formattedThink}`, "incoming"));
+                    chatBox.appendChild(createChatLi(`<hr><strong>Réponse :</strong><br>${formattedMain}`, "incoming"));
+                } else {
+                    chatBox.appendChild(createChatLi(data.response.replace(/\n/g, "<br>"), "incoming"));
+                }
+            } else {
+                chatBox.appendChild(createChatLi(data.response.replace(/\n/g, "<br>"), "incoming"));
+            }
             chatBox.scrollTo(0, chatBox.scrollHeight);
             context.innerHTML = "";
             source.innerHTML = "";
