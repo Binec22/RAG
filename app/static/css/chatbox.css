@@ -11,7 +11,7 @@
 
 .chat .chat {
   max-width: 48rem;
-  padding-bottom: 1rem;
+  padding-bottom: 2.5rem;
 }
 
 .chat .chat .h5 {
@@ -52,13 +52,13 @@
 }
 
 .chat .card-footer:last-child {
-  border-radius: 2rem;
+  border-radius: 1rem;
 }
 
 .chat .chat-input-container {
   background-color: var(--light-grey);
   display: inline-flex;
-  border-radius: 3rem;
+  border-radius: 1rem;
   padding: 0.3rem 0.3rem;
   width: 100%;
 }

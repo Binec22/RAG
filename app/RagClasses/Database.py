@@ -352,7 +352,9 @@ class Database:
 
 
 class ProgressPyPDFDirectoryLoader(PyPDFDirectoryLoader):
-    """Enhanced PDF directory loader with progress tracking"""
+    """
+    Enhanced PDF directory loader with progress tracking
+    """
     def load(self) -> List[Document]:
         p = Path(self.path)
         docs = []
