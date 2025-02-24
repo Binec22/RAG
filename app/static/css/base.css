@@ -14,9 +14,9 @@
 html, body {
   height: 100%;
   margin: 0;
-  font-size: 13px;
   overflow: hidden;
   transition: padding-left 0.3s ease, padding-right 0.3s ease;
+  font-family: "Poppins", serif;
 }
 
 /* Overlay Styles */
@@ -128,3 +128,5 @@ html, body {
   align-items: center;
   justify-content: space-between;
 }
+
+

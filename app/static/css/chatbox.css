@@ -10,7 +10,7 @@
 }
 
 .chat .chat {
-  max-width: 48rem;
+  max-width: 60rem;
   padding-bottom: 2.5rem;
 }
 
@@ -118,6 +118,7 @@
 .chat .message.incoming {
   align-self: flex-start;
   max-width: 100%;
+  margin-right: 100px;
 }
 
 .chat .message.outcoming {
@@ -126,5 +127,5 @@
 }
 
 .seatech-logo{
-  width: 100px;
+  width: 200px;
 }
