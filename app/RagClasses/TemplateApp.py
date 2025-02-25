@@ -104,10 +104,9 @@ class TemplateApp:
         """
         return send_from_directory(self.app.config['UPLOAD_FOLDER'], filename)
 
-    @staticmethod
-    def index():
+    def index(self):
         """Render the main template."""
-        return render_template(TEMPLATE_PATH)
+        return render_template(TEMPLATE_PATH, default_params=self.config_dict)
 
     def update_settings(self):
         """

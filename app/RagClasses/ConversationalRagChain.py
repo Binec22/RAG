@@ -1,9 +1,10 @@
 from langchain.chains.base import Chain
 from langchain.output_parsers import YamlOutputParser
-from typing import List, Dict, Any, Optional
 from langchain.callbacks.manager import CallbackManagerForChainRun, Callbacks
 from langchain.llms.base import BaseLanguageModel
+from langchain.schema import BaseCache
 from pydantic import BaseModel, Field
+from typing import List, Dict, Any, Optional
 
 from langchain_core.runnables import RunnableBinding
 
@@ -132,3 +133,5 @@ class ConversationalRagChain(Chain):
 
         self.update_chat_history(question, answer)
         return {self.output_key: answer, self.context_key: contexts, self.source_key: sources}
+
+ConversationalRagChain.model_rebuild()

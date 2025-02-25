@@ -13,7 +13,7 @@ default_params = {
     "mmr_doc_nb": 5,
     "lambda_mult": 0.25,
     "isHistoryOn": True,
-    "embedding_model": "nomic-embed-text",
+    "embedding_model": "voyage-3",
     "llm_model": "groq-mistral",
 }
 

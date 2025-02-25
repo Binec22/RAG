@@ -44,7 +44,7 @@
                     <div class="card-header settings-header collapse-open" id="settingsHeader">
                         <button class="btn btn-menu text-white" type="button" data-bs-toggle="collapse" data-bs-target="#collapseSettings" aria-expanded="true" aria-controls="collapseSettings">
                             <span class="float-start">
-                                <img src="static/img/setting.svg" alt="setting button" class="icon">Settings
+                                <img src="static/img/setting.svg" alt="setting button" class="icon">Paramètres
                             </span>
                             <i class="fas fa-caret-down float-end"></i>
                         </button>
@@ -53,21 +53,22 @@
                         <div class="card-body text-white text-justify settings">
                             <li class="settings-item">
                                 <label for="searchTypeDropdown">
-                                    <img src="static/img/information-circle.svg" alt="Info" class="info-icon" data-bs-toggle="tooltip" data-bs-html="true" data-bs-placement="right" title="Defines the type of search the Retriever should perform. Options are: <br>
-                                    - 'similarity': finds the most similar documents<br>
-                                    - 'mmr': maximizes relevance and diversity<br>
-                                    - 'similarity_score_threshold': retrieves documents above a certain relevance score.">
-                                    Search type:
+                                    <img src="static/img/information-circle.svg" alt="Info" class="info-icon" data-bs-toggle="tooltip" data-bs-html="true" data-bs-placement="right" title="Définit le type de recherche que le Retriever doit effectuer. Les options sont : <br>
+                                    - 'similarity' : trouve les documents les plus similaires<br>
+                                    - 'mmr' : maximise la pertinence et la diversité<br>
+                                    - 'similarity_score_threshold' : récupère les documents dont le score de pertinence est au-dessus d'un certain seuil.">
+
+                                    Type de Recherche:
                                 </label>
                                 <select class="form-select" id="searchTypeDropdown">
-                                    <option value="similarity">Similarity</option>
-                                    <option value="similarity_score_threshold">Similarity score threshold</option>
+                                    <option value="similarity">Similarité</option>
+                                    <option value="similarity_score_threshold">Similarité avec seuil de score</option>
                                     <option value="mmr">MMR</option>
                                 </select>
                                 
                                 <div id="similarityContent">
                                     <div class="slider-value">
-                                        <img src="static/img/information-circle.svg" alt="Info" class="info-icon" data-bs-toggle="tooltip" data-bs-placement="right" title="Amount of documents to return">Number of retrieved chunks: <span id="similaritySliderValue">1</span>
+                                        <img src="static/img/information-circle.svg" alt="Info" class="info-icon" data-bs-toggle="tooltip" data-bs-placement="right" title="Nombre de sources à relever">Nombre de source relevées: <span id="similaritySliderValue">1</span>
                                     </div>
                                     <div class="slider-container">
                                         <span id="minValue">1</span>
@@ -78,7 +79,7 @@
                                 
                                 <div id="similarityScoreContent" class="hidden">
                                     <div class="slider-value">
-                                        <img src="static/img/information-circle.svg" alt="Info" class="info-icon" data-bs-toggle="tooltip" data-bs-placement="right" title="Minimum relevance threshold to fetch documents">Similarity score required: <span id="similarityScoreSliderValue">1</span>%
+                                        <img src="static/img/information-circle.svg" alt="Info" class="info-icon" data-bs-toggle="tooltip" data-bs-placement="right" title="Seuil de score requis">Seuil de score requis: <span id="similarityScoreSliderValue">1</span>%
                                     </div>
                                     <div class="slider-container">
                                         <span id="minValue">1%</span>
@@ -86,7 +87,7 @@
                                         <span id="maxValue">100%</span>
                                     </div>
                                     <div class="slider-value">
-                                        <img src="{{ url_for('static', filename='img/information-circle.svg') }}" alt="Info" class="info-icon" data-bs-toggle="tooltip" data-bs-placement="right" title="Max amount of documents to return">Max number of retrieved chunks: <span id="maxChunkSliderValue">1</span>
+                                        <img src="{{ url_for('static', filename='img/information-circle.svg') }}" alt="Info" class="info-icon" data-bs-toggle="tooltip" data-bs-placement="right" title="Nombre de sources max">Nombre de sources max: <span id="maxChunkSliderValue">1</span>
                                     </div>
                                     <div class="slider-container">
                                         <span id="minValue">1</span>
@@ -97,7 +98,7 @@
 
                                 <div id="mmrContent" class="hidden">
                                     <div class="slider-value">
-                                        <img src="static/img/information-circle.svg" alt="Info" class="info-icon" data-bs-toggle="tooltip" data-bs-html="true" data-bs-placement="right" title="Fetch more documents for the MMR algorithm to consider <br>Only return the top documents based on the amount defined below">Considered chunks: <span id="consideredChunkSliderValue">1</span>
+                                        <img src="static/img/information-circle.svg" alt="Info" class="info-icon" data-bs-toggle="tooltip" data-bs-html="true" data-bs-placement="right" title="Récupérer plus de documents pour que l'algorithme MMR puisse les analyser <br> Ne retourner que les meilleurs documents en fonction du nombre.">Sources considérées: <span id="consideredChunkSliderValue">1</span>
                                     </div>
                                     <div class="slider-container">
                                         <span id="minValue">1</span>
@@ -105,7 +106,7 @@
                                         <span id="maxValue">30</span>
                                     </div>
                                     <div class="slider-value">
-                                        <img src="static/img/information-circle.svg" alt="Info" class="info-icon" data-bs-toggle="tooltip" data-bs-placement="right" title="Define the amount of document to return">Retrieved chunks: <span id="retrievedChunkSliderValue">1</span>
+                                        <img src="static/img/information-circle.svg" alt="Info" class="info-icon" data-bs-toggle="tooltip" data-bs-placement="right" title="Défini le nombre de sources à relever">Sources relevées: <span id="retrievedChunkSliderValue">1</span>
                                     </div>
                                     <div class="slider-container">
                                         <span id="minValue">1</span>
@@ -113,7 +114,7 @@
                                         <span id="maxValue">30</span>
                                     </div>
                                     <div class="slider-value">
-                                        <img src="static/img/information-circle.svg" alt="Info" class="info-icon" data-bs-toggle="tooltip" data-bs-html="true" data-bs-placement="right" title="Diversity of results returned by MMR<br>1 for minimum diversity and 0 for maximum<br>Useful if your dataset has many similar documents">Lambda multiplicator: <span id="lambdaSliderValue">1</span>%
+                                        <img src="static/img/information-circle.svg" alt="Info" class="info-icon" data-bs-toggle="tooltip" data-bs-html="true" data-bs-placement="right" title="Diversité des résultats retournés par MMR<br>1 pour une diversité minimale et 0 pour une diversité maximale<br>Utile si votre ensemble de données contient de nombreux documents similaires">Lambda multiplicator: <span id="lambdaSliderValue">1</span>%
                                     </div>
                                     <div class="slider-container">
                                         <span id="minValue">1%</span>
@@ -123,14 +124,14 @@
                                 </div>
                             </li>
                             <li class="settings-item">
-                                <label for="embeddingModelDropdown">Embedding model:</label>
+                                <label for="embeddingModelDropdown">Modèle d'Embedding:</label>
                                 <select class="form-select" id="embeddingModelDropdown">
                                     <option value="voyage-3">Voyage 3 (Voyage API)</option>
                                     <option value="nomic-embed-text">Nomic embed text (Ollama)</option>
                                 </select>
                             </li>
                             <li class="settings-item last-item">
-                                <label for="llmModelDropdown">LLM model:</label>
+                                <label for="llmModelDropdown">Modèle LLM:</label>
                                 <select class="form-select" id="llmModelDropdown">
                                     <option value="ollama-mistral">Mistral 7B (Ollama local)</option>
                                     <option value="groq-mistral">Mistral 8x7B (Groq API)</option>
@@ -147,7 +148,7 @@
                     <div class="card-header history-header collapse-open" id="historyHeader">
                         <button class="btn btn-menu text-white" type="button" data-bs-toggle="collapse" data-bs-target="#collapseHistory" aria-expanded="false" aria-controls="collapseHistory">
                             <span class="float-start">
-                                <img src="{{ url_for('static', filename='img/message-multiple.svg') }}" alt="chat history" class="icon">Chat History
+                                <img src="{{ url_for('static', filename='img/message-multiple.svg') }}" alt="chat history" class="icon">Historique de Chat
                             </span>
                             <i class="fas fa-caret-down float-end"></i>
                         </button>
@@ -157,11 +158,11 @@
                             <li class="history-items">
                                 <div class="form-check form-switch">
                                     <input class="form-check-input" type="checkbox" id="flexSwitchHistory" checked>
-                                    <label class="form-check-label" for="flexSwitchHistory">Activate Chat History</label>
+                                    <label class="form-check-label" for="flexSwitchHistory">Activer l'historique de chat</label>
                                 </div>
                             </li>
                             <li class="history-items">
-                                <button class="btn clear-btn" id="clear-btn" type="button"><img src="{{ url_for('static', filename='img/delete.svg') }}" alt="delete" class="icon">Clear Chat History</button>
+                                <button class="btn clear-btn" id="clear-btn" type="button"><img src="{{ url_for('static', filename='img/delete.svg') }}" alt="delete" class="icon">Supprimer l'historique</button>
                             </li>
                         </div>
                     </div>
@@ -170,7 +171,7 @@
                     <div class="card-header database-header collapse-open" id="databaseHeader">
                         <button class="btn btn-menu text-white" type="button" data-bs-toggle="collapse" data-bs-target="#collapseDatabase" aria-expanded="false" aria-controls="collapseDatabase">
                             <span class="float-start">
-                                <img src="static/img/folder.svg" alt="database button" class="icon">Database
+                                <img src="static/img/folder.svg" alt="database button" class="icon">Base de données
                             </span>
                             <i class="fas fa-caret-down float-end"></i>
                         </button>
@@ -185,10 +186,10 @@
         </div>
         <div class="nav-footer">
             <li class="nav-item">
-                <a class="nav-link text-left text-white py-1 px-0" href="#">
-                    <img src="static/img/logout.svg" alt="logout button" class="icon mx-3">
-                    <span class="text-nowrap mx-2">Log out</span>
-                </a>
+{#                <a class="nav-link text-left text-white py-1 px-0" href="#">#}
+{#                    <img src="static/img/logout.svg" alt="logout button" class="icon mx-3">#}
+{#                    <span class="text-nowrap mx-2">Log out</span>#}
+{#                </a>#}
             </li>
         </div>
     </ul>
@@ -223,7 +224,7 @@
         <div class="nav-header">
             <li class="nav-item logo-holder">
                 <div class="text-center text-white logo">
-                    <a class="text-white text-decoration-none" id="title" href="#"><strong>Context Menu</strong></a>
+                    <a class="text-white text-decoration-none" id="title" href="#"><strong>Menu</strong></a>
                     <a class="text-white float-end" id="sidebarToggleHolder" href="#">
                         <img src="static/img/menu.svg" alt="menubar" class="icon" id="rightSidebarToggle">
                     </a>
@@ -235,11 +236,11 @@
                 <div class="card-header collapse-open" id="heading1">
                     <a><img class="icon download-icon" src="static/img/alert-diamond.svg"></a>
                     <button class="btn btn-menu text-white context" type="button" data-bs-toggle="collapse" data-bs-target="#collapse1" aria-expanded="true" aria-controls="collapse1">
-                        <span class="float-start mx-2">The different retrieved text chunks will appear in this menu</span><i class="fas fa-caret-down float-end"></i>
+                        <span class="float-start mx-2">Les différents éléments relevés par le système apparaitront ici</span><i class="fas fa-caret-down float-end"></i>
                     </button>
                 </div>
                 <div id="collapse1" class="collapse show" aria-labelledby="heading1">
-                    <div class="card-body text-white text-justify">You can show or hide each text chunk by clicking on it.<br>You can also view and/or download the document to which the text section belongs by clicking the download button.</div>
+                    <div class="card-body text-white text-justify">Vous pouvez voir ou cacher un texte en cliquant dessus. Vous pouvez aussi accéder à la page web correspondante.</div>
                 </div>
             </div>
         </div>
@@ -249,6 +250,7 @@
     </ul>
     <script>
         var root = "{{ root }}";
+        var defaultParams = {{ default_params | tojson }};
     </script>
     <script src="{{ url_for('static', filename='bootstrap/js/bootstrap.bundle.min.js') }}"></script>
     <script src="{{ url_for('static', filename='js/script.js') }}"></script>

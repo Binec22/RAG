@@ -16,8 +16,8 @@ Le **Chat by Seatech** est un chatbot utilisant le **RAG** (Retrieval-Augmented 
 
 ### Cloner le dépôt :
 ```bash
-git clone https://github.com/votre-utilisateur/le-chat-by-seatech.git
-cd le-chat-by-seatech
+git clone https://github.com/Binec22/RAG.git
+cd RAG
 ```
 
 ### Installer les dépendances :
@@ -27,7 +27,7 @@ pip install -r requirements.txt
 
 ### Configurer les clés API :
 1. Créez un fichier **.env** à la racine du projet.
-2. Ajoutez vos clés API pour les services utilisés :
+2. Ajoutez vos clés API pour les services implémentés :
 
 ```plaintext
 GROQ_API_KEY=votre_cle_groq
@@ -35,6 +35,12 @@ HF_API_KEY=votre_cle_huggingface
 OPENAI_API_KEY=votre_cle_openai
 VOYAGE_API_KEY=votre_cle_voyage
 ```
+
+> **Note** :
+> Vous n'êtes pas obligés de renseigner les clés d'API que vous ne voulez pas utiliser
+
+
+
 
 ### Installer Ollama (si nécessaire) :
 Suivez les instructions d'installation d'**Ollama** pour utiliser les modèles locaux.

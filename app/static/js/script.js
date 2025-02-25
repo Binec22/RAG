@@ -44,7 +44,18 @@ document.addEventListener("DOMContentLoaded", function() {
 
     // Initialization
     function init() {
-        initSettings('similarity', 5, 80, 5, 25, 5, 25, 'voyage-3', 'ollama-mistral');
+        //initSettings('similarity', 5, 80, 5, 25, 5, 25, 'voyage-3', 'groq-mistral');
+        initSettings(
+            defaultParams.search_type,
+            defaultParams.similarity_doc_nb,
+            defaultParams.score_threshold * 100, // conversion pour affichage en %
+            defaultParams.max_chunk_return,
+            defaultParams.considered_chunk,
+            defaultParams.mmr_doc_nb,
+            defaultParams.lambda_mult * 100, // conversion pour affichage en %
+            defaultParams.embedding_model,
+            defaultParams.llm_model
+        );
         clearChatHistory(onLoad = true);
         handleResponsiveClasses();
         collapseSidebarsOnLoad();
@@ -452,6 +463,14 @@ document.addEventListener("DOMContentLoaded", function() {
         return chatLi;
     }
 
+    function extractTitle(url) {
+        const match = url.match(/\/([-a-zA-Z0-9]+)\.html$/);
+        if (match) {
+            return match[1].replace(/-/g, ' ');
+        }
+        return null;
+    }
+
     async function createContextElement(context, source, contextNumber) {
         const cardHeader = document.createElement('div');
         cardHeader.className = 'card-header';
@@ -460,27 +479,19 @@ document.addEventListener("DOMContentLoaded", function() {
         const span = document.createElement('span');
         span.className = 'float-start mx-2';
 
-        // TODO
-        span.appendChild(document.createTextNode(source));
-        // const doc = await fetchDocument(source);
-        // if (doc) {
-        //     const docIcon = createIcon(doc);
-        //     span.appendChild(docIcon);
-        //     span.appendChild(document.createTextNode(source));
-        //
-        //     const downloadButton = createLink(doc);
-        //     downloadButton.textContent = "";
-        //
-        //     const downloadIcon = document.createElement('img');
-        //     downloadIcon.classList.add('icon');
-        //     downloadIcon.classList.add('download-icon');
-        //     downloadIcon.src = `${root}/static/img/download.svg`;
-        //
-        //     downloadButton.appendChild(downloadIcon);
-        //     cardHeader.appendChild(downloadButton);
-        // } else {
-        //     console.error('Document is undefined');
-        // }
+        span.appendChild(document.createTextNode(extractTitle(source)));
+        const downloadButton = document.createElement('a');
+        downloadButton.href = source;
+        downloadButton.target = "_blank";
+
+        const downloadIcon = document.createElement('img');
+        downloadIcon.classList.add('icon');
+        downloadIcon.classList.add('download-icon');
+        downloadIcon.src = `${root}/static/img/download.svg`;
+
+        downloadButton.appendChild(downloadIcon);
+        cardHeader.appendChild(downloadButton);
+
 
         const contextButton = document.createElement('button');
         contextButton.className = 'btn btn-menu text-white context';
