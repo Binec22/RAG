@@ -480,17 +480,17 @@ document.addEventListener("DOMContentLoaded", function() {
         span.className = 'float-start mx-2';
 
         span.appendChild(document.createTextNode(extractTitle(source)));
-        const downloadButton = document.createElement('a');
-        downloadButton.href = source;
-        downloadButton.target = "_blank";
+        const linkButton = document.createElement('a');
+        linkButton.href = source;
+        linkButton.target = "_blank";
 
-        const downloadIcon = document.createElement('img');
-        downloadIcon.classList.add('icon');
-        downloadIcon.classList.add('download-icon');
-        downloadIcon.src = `${root}/static/img/download.svg`;
+        const linkdIcon = document.createElement('img');
+        linkdIcon.classList.add('icon');
+        linkdIcon.classList.add('download-icon');
+        linkdIcon.src = `${root}/static/img/link.svg`;
 
-        downloadButton.appendChild(downloadIcon);
-        cardHeader.appendChild(downloadButton);
+        linkButton.appendChild(linkdIcon);
+        cardHeader.appendChild(linkButton);
 
 
         const contextButton = document.createElement('button');
